@@ -1,0 +1,792 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Лабораторная работа №3. Генераторы псевдослучайных чисел: Файл lab3_psrandom.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Лабораторная работа №3. Генераторы псевдослучайных чисел
+   </div>
+   <div id="projectbrief">Статистический и скоростной анализ пользовательских ГПСЧ</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('lab3__psrandom_8cpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Файл lab3_psrandom.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Лабораторная работа №3. Исследование генераторов псевдослучайных чисел.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;cstdio&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;numeric&gt;</code><br />
+<code>#include &lt;random&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div>
+<p><a href="lab3__psrandom_8cpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:LCG_5FBaysDurham" id="r_LCG_5FBaysDurham"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_l_c_g___bays_durham.html">LCG_BaysDurham</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-Durham.  <a href="class_l_c_g___bays_durham.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:Xorshift128_5FMLT" id="r_Xorshift128_5FMLT"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_xorshift128___m_l_t.html">Xorshift128_MLT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генератор xorshift128 с дополнительным перемешиванием.  <a href="class_xorshift128___m_l_t.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:AdditiveLFG_5FRotateXor" id="r_AdditiveLFG_5FRotateXor"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_additive_l_f_g___rotate_xor.html">AdditiveLFG_RotateXor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Аддитивный лаговый рекуррентный генератор с вращением и XOR.  <a href="class_additive_l_f_g___rotate_xor.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:SampleStats" id="r_SampleStats"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_sample_stats.html">SampleStats</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Структура статистик для одной выборки.  <a href="struct_sample_stats.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:StandardMT" id="r_StandardMT"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_standard_m_t.html">StandardMT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обёртка над стандартным генератором Mersenne Twister.  <a href="class_standard_m_t.html#details">Подробнее...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:aa2133f058001f137f2da18ba0ecc2fca" id="r_aa2133f058001f137f2da18ba0ecc2fca"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#aa2133f058001f137f2da18ba0ecc2fca">rotl32</a> (uint32_t x, unsigned r)</td></tr>
+<tr class="memdesc:aa2133f058001f137f2da18ba0ecc2fca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Циклический сдвиг 32-битного числа влево.  <br /></td></tr>
+<tr class="memitem:ad655fe4347424d2ea2a6fe9bd6c4ae0c" id="r_ad655fe4347424d2ea2a6fe9bd6c4ae0c"><td class="memItemLeft"><a class="el" href="struct_sample_stats.html">SampleStats</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad655fe4347424d2ea2a6fe9bd6c4ae0c">computeStats</a> (const vector&lt; int &gt; &amp;sample)</td></tr>
+<tr class="memdesc:ad655fe4347424d2ea2a6fe9bd6c4ae0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет статистики для выборки случайных чисел.  <br /></td></tr>
+<tr class="memitem:a66d117a8d4ff064015568b237b324c07" id="r_a66d117a8d4ff064015568b237b324c07"><td class="memTemplParams" colspan="2">template&lt;typename Gen&gt; </td></tr>
+<tr class="memitem:a66d117a8d4ff064015568b237b324c07 template"><td class="memItemLeft">vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a66d117a8d4ff064015568b237b324c07">generateSample</a> (Gen &amp;gen, int size, int range)</td></tr>
+<tr class="memdesc:a66d117a8d4ff064015568b237b324c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерирует выборку случайных чисел заданного размера.  <br /></td></tr>
+<tr class="memitem:a0c3df977c8031692f0d249977766f1b7" id="r_a0c3df977c8031692f0d249977766f1b7"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a0c3df977c8031692f0d249977766f1b7">my_erfc</a> (double x)</td></tr>
+<tr class="memdesc:a0c3df977c8031692f0d249977766f1b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Аппроксимация дополнительной функции ошибок.  <br /></td></tr>
+<tr class="memitem:ab55cbd12576c03f2b2e21c377e8069e9" id="r_ab55cbd12576c03f2b2e21c377e8069e9"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ab55cbd12576c03f2b2e21c377e8069e9">p_value_from_chi2</a> (double chi2, int df)</td></tr>
+<tr class="memdesc:ab55cbd12576c03f2b2e21c377e8069e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет p-value для статистики хи-квадрат.  <br /></td></tr>
+<tr class="memitem:a49098e3887a1310c0476f7a7fad2a94c" id="r_a49098e3887a1310c0476f7a7fad2a94c"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a49098e3887a1310c0476f7a7fad2a94c">nist_monobit</a> (const vector&lt; uint8_t &gt; &amp;bits)</td></tr>
+<tr class="memdesc:a49098e3887a1310c0476f7a7fad2a94c"><td class="mdescLeft">&#160;</td><td class="mdescRight">NIST-подобный монобитный тест.  <br /></td></tr>
+<tr class="memitem:a6e1649e5522803277804470ab3fe1888" id="r_a6e1649e5522803277804470ab3fe1888"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a6e1649e5522803277804470ab3fe1888">nist_block_frequency</a> (const vector&lt; uint8_t &gt; &amp;bits, int M=128)</td></tr>
+<tr class="memdesc:a6e1649e5522803277804470ab3fe1888"><td class="mdescLeft">&#160;</td><td class="mdescRight">NIST-подобный тест частоты в блоках.  <br /></td></tr>
+<tr class="memitem:af94f7069d60a35e07f6a500fc789f16d" id="r_af94f7069d60a35e07f6a500fc789f16d"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af94f7069d60a35e07f6a500fc789f16d">nist_runs</a> (const vector&lt; uint8_t &gt; &amp;bits)</td></tr>
+<tr class="memdesc:af94f7069d60a35e07f6a500fc789f16d"><td class="mdescLeft">&#160;</td><td class="mdescRight">NIST-подобный тест серий.  <br /></td></tr>
+<tr class="memitem:a1d881f4dfd5a20497b1a1c264f1ec2ea" id="r_a1d881f4dfd5a20497b1a1c264f1ec2ea"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a1d881f4dfd5a20497b1a1c264f1ec2ea">nist_longest_run</a> (const vector&lt; uint8_t &gt; &amp;bits)</td></tr>
+<tr class="memdesc:a1d881f4dfd5a20497b1a1c264f1ec2ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">NIST-подобный тест на длину наибольшей серии единиц.  <br /></td></tr>
+<tr class="memitem:ac08978b2e016601d96f948e7da57052d" id="r_ac08978b2e016601d96f948e7da57052d"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ac08978b2e016601d96f948e7da57052d">nist_cusum</a> (const vector&lt; uint8_t &gt; &amp;bits, bool forward=true)</td></tr>
+<tr class="memdesc:ac08978b2e016601d96f948e7da57052d"><td class="mdescLeft">&#160;</td><td class="mdescRight">NIST-подобный тест кумулятивных сумм.  <br /></td></tr>
+<tr class="memitem:a2099e95222d3fe18d0bd85d5c6402bf5" id="r_a2099e95222d3fe18d0bd85d5c6402bf5"><td class="memTemplParams" colspan="2">template&lt;typename Gen&gt; </td></tr>
+<tr class="memitem:a2099e95222d3fe18d0bd85d5c6402bf5 template"><td class="memItemLeft">vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2099e95222d3fe18d0bd85d5c6402bf5">generateBits</a> (Gen &amp;gen, int numBits)</td></tr>
+<tr class="memdesc:a2099e95222d3fe18d0bd85d5c6402bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерирует битовую последовательность.  <br /></td></tr>
+<tr class="memitem:a814a07e427f0df0f3824f053d98f09cf" id="r_a814a07e427f0df0f3824f053d98f09cf"><td class="memTemplParams" colspan="2">template&lt;typename Gen&gt; </td></tr>
+<tr class="memitem:a814a07e427f0df0f3824f053d98f09cf template"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a814a07e427f0df0f3824f053d98f09cf">measureGenerationTime</a> (Gen &amp;gen, int count)</td></tr>
+<tr class="memdesc:a814a07e427f0df0f3824f053d98f09cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Измеряет время генерации заданного количества чисел.  <br /></td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Точка входа в программу.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:aba6cb037db93cd395e97699fab1e022e" id="r_aba6cb037db93cd395e97699fab1e022e"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#aba6cb037db93cd395e97699fab1e022e">NUM_SAMPLES</a> = 20</td></tr>
+<tr class="memdesc:aba6cb037db93cd395e97699fab1e022e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество выборок для статистического анализа.  <br /></td></tr>
+<tr class="memitem:abb438dd06eaa3add6a90ac8aae07eb3a" id="r_abb438dd06eaa3add6a90ac8aae07eb3a"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#abb438dd06eaa3add6a90ac8aae07eb3a">SAMPLE_SIZE</a> = 1000</td></tr>
+<tr class="memdesc:abb438dd06eaa3add6a90ac8aae07eb3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер одной выборки.  <br /></td></tr>
+<tr class="memitem:a5fefccc65be47d75576682015826c583" id="r_a5fefccc65be47d75576682015826c583"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#a5fefccc65be47d75576682015826c583">RANGE_SIZE</a> = 10000</td></tr>
+<tr class="memdesc:a5fefccc65be47d75576682015826c583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер диапазона случайных чисел.  <br /></td></tr>
+<tr class="memitem:a7b63ccc35ac484b9f41e37ccd0cb31bd" id="r_a7b63ccc35ac484b9f41e37ccd0cb31bd"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#a7b63ccc35ac484b9f41e37ccd0cb31bd">K</a> = 20</td></tr>
+<tr class="memdesc:a7b63ccc35ac484b9f41e37ccd0cb31bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество интервалов для критерия хи-квадрат.  <br /></td></tr>
+<tr class="memitem:a49e0be6b18a90c58221f96ff8b3d537a" id="r_a49e0be6b18a90c58221f96ff8b3d537a"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#a49e0be6b18a90c58221f96ff8b3d537a">BIN_SIZE</a> = <a class="el" href="#a5fefccc65be47d75576682015826c583">RANGE_SIZE</a> / <a class="el" href="#a7b63ccc35ac484b9f41e37ccd0cb31bd">K</a></td></tr>
+<tr class="memdesc:a49e0be6b18a90c58221f96ff8b3d537a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер одного интервала для критерия хи-квадрат.  <br /></td></tr>
+<tr class="memitem:acc1333a53debfec1f6a112d257439cf4" id="r_acc1333a53debfec1f6a112d257439cf4"><td class="memItemLeft">const double&#160;</td><td class="memItemRight"><a class="el" href="#acc1333a53debfec1f6a112d257439cf4">CHI2_CRIT</a> = 30.1435</td></tr>
+<tr class="memdesc:acc1333a53debfec1f6a112d257439cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Критическое значение критерия хи-квадрат при 19 степенях свободы и alpha = 0.05.  <br /></td></tr>
+<tr class="memitem:a89671e289ebc456dda6af5289a9cc140" id="r_a89671e289ebc456dda6af5289a9cc140"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#a89671e289ebc456dda6af5289a9cc140">BIT_COUNT</a> = 1000000</td></tr>
+<tr class="memdesc:a89671e289ebc456dda6af5289a9cc140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество битов для NIST-подобных тестов.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Лабораторная работа №3. Исследование генераторов псевдослучайных чисел. </p>
+<p>Программа реализует три пользовательских генератора псевдослучайных чисел, сравнивает их статистические характеристики, выполняет упрощённые NIST-подобные тесты и измеряет скорость генерации. Результаты сохраняются в CSV-файлы для последующего построения графиков и включения в отчёт Doxygen. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a></p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Функции</h2>
+<a id="ad655fe4347424d2ea2a6fe9bd6c4ae0c" name="ad655fe4347424d2ea2a6fe9bd6c4ae0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad655fe4347424d2ea2a6fe9bd6c4ae0c">&#9670;&#160;</a></span>computeStats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_sample_stats.html">SampleStats</a> computeStats </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>sample</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Вычисляет статистики для выборки случайных чисел. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sample</td><td>Выборка целых чисел. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Заполненная структура статистик. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00251">251</a></p>
+
+</div>
+</div>
+<a id="a2099e95222d3fe18d0bd85d5c6402bf5" name="a2099e95222d3fe18d0bd85d5c6402bf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2099e95222d3fe18d0bd85d5c6402bf5">&#9670;&#160;</a></span>generateBits()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Gen&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; uint8_t &gt; generateBits </td>
+          <td>(</td>
+          <td class="paramtype">Gen &amp;</td>          <td class="paramname"><span class="paramname"><em>gen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>numBits</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерирует битовую последовательность. </p>
+<dl class="tparams"><dt>Параметры шаблона</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Gen</td><td>Тип генератора. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gen</td><td>Экземпляр генератора. </td></tr>
+    <tr><td class="paramname">numBits</td><td>Количество бит. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Вектор битов. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00462">462</a></p>
+
+</div>
+</div>
+<a id="a66d117a8d4ff064015568b237b324c07" name="a66d117a8d4ff064015568b237b324c07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66d117a8d4ff064015568b237b324c07">&#9670;&#160;</a></span>generateSample()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Gen&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; int &gt; generateSample </td>
+          <td>(</td>
+          <td class="paramtype">Gen &amp;</td>          <td class="paramname"><span class="paramname"><em>gen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>range</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерирует выборку случайных чисел заданного размера. </p>
+<dl class="tparams"><dt>Параметры шаблона</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Gen</td><td>Тип генератора. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gen</td><td>Экземпляр генератора. </td></tr>
+    <tr><td class="paramname">size</td><td>Размер выборки. </td></tr>
+    <tr><td class="paramname">range</td><td>Размер диапазона значений. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Вектор случайных чисел. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00287">287</a></p>
+
+</div>
+</div>
+<a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Точка входа в программу. </p>
+<p>Программа:</p><ul>
+<li>вычисляет описательные статистики для 20 выборок каждого генератора;</li>
+<li>сохраняет их в файл output/random_stats.csv;</li>
+<li>выполняет NIST-подобные тесты и сохраняет результаты в output/nist_results.csv;</li>
+<li>измеряет скорость генерации и сохраняет её в output/speed_results.csv. </li>
+</ul>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00495">495</a></p>
+
+</div>
+</div>
+<a id="a814a07e427f0df0f3824f053d98f09cf" name="a814a07e427f0df0f3824f053d98f09cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a814a07e427f0df0f3824f053d98f09cf">&#9670;&#160;</a></span>measureGenerationTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Gen&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">double measureGenerationTime </td>
+          <td>(</td>
+          <td class="paramtype">Gen &amp;</td>          <td class="paramname"><span class="paramname"><em>gen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Измеряет время генерации заданного количества чисел. </p>
+<dl class="tparams"><dt>Параметры шаблона</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Gen</td><td>Тип генератора. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gen</td><td>Экземпляр генератора. </td></tr>
+    <tr><td class="paramname">count</td><td>Количество генерируемых значений. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Время генерации в миллисекундах. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00478">478</a></p>
+
+</div>
+</div>
+<a id="a0c3df977c8031692f0d249977766f1b7" name="a0c3df977c8031692f0d249977766f1b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c3df977c8031692f0d249977766f1b7">&#9670;&#160;</a></span>my_erfc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double my_erfc </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Аппроксимация дополнительной функции ошибок. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Аргумент. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Значение erfc(x). </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00298">298</a></p>
+
+</div>
+</div>
+<a id="a6e1649e5522803277804470ab3fe1888" name="a6e1649e5522803277804470ab3fe1888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e1649e5522803277804470ab3fe1888">&#9670;&#160;</a></span>nist_block_frequency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double nist_block_frequency </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; uint8_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bits</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>M</em></span><span class="paramdefsep"> = </span><span class="paramdefval">128</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NIST-подобный тест частоты в блоках. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bits</td><td>Последовательность битов. </td></tr>
+    <tr><td class="paramname">M</td><td>Размер блока. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>p-value теста. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00331">331</a></p>
+
+</div>
+</div>
+<a id="ac08978b2e016601d96f948e7da57052d" name="ac08978b2e016601d96f948e7da57052d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac08978b2e016601d96f948e7da57052d">&#9670;&#160;</a></span>nist_cusum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double nist_cusum </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; uint8_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bits</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>forward</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NIST-подобный тест кумулятивных сумм. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bits</td><td>Последовательность битов. </td></tr>
+    <tr><td class="paramname">forward</td><td>Направление обхода последовательности. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>p-value теста. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00412">412</a></p>
+
+</div>
+</div>
+<a id="a1d881f4dfd5a20497b1a1c264f1ec2ea" name="a1d881f4dfd5a20497b1a1c264f1ec2ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d881f4dfd5a20497b1a1c264f1ec2ea">&#9670;&#160;</a></span>nist_longest_run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double nist_longest_run </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; uint8_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bits</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NIST-подобный тест на длину наибольшей серии единиц. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bits</td><td>Последовательность битов. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>p-value теста. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00369">369</a></p>
+
+</div>
+</div>
+<a id="a49098e3887a1310c0476f7a7fad2a94c" name="a49098e3887a1310c0476f7a7fad2a94c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49098e3887a1310c0476f7a7fad2a94c">&#9670;&#160;</a></span>nist_monobit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double nist_monobit </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; uint8_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bits</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NIST-подобный монобитный тест. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bits</td><td>Последовательность битов. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>p-value теста. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00318">318</a></p>
+
+</div>
+</div>
+<a id="af94f7069d60a35e07f6a500fc789f16d" name="af94f7069d60a35e07f6a500fc789f16d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af94f7069d60a35e07f6a500fc789f16d">&#9670;&#160;</a></span>nist_runs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double nist_runs </td>
+          <td>(</td>
+          <td class="paramtype">const vector&lt; uint8_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bits</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NIST-подобный тест серий. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bits</td><td>Последовательность битов. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>p-value теста. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00350">350</a></p>
+
+</div>
+</div>
+<a id="ab55cbd12576c03f2b2e21c377e8069e9" name="ab55cbd12576c03f2b2e21c377e8069e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab55cbd12576c03f2b2e21c377e8069e9">&#9670;&#160;</a></span>p_value_from_chi2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double p_value_from_chi2 </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>chi2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>df</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Вычисляет p-value для статистики хи-квадрат. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chi2</td><td>Значение статистики. </td></tr>
+    <tr><td class="paramname">df</td><td>Число степеней свободы. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Приближённое p-value. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00310">310</a></p>
+
+</div>
+</div>
+<a id="aa2133f058001f137f2da18ba0ecc2fca" name="aa2133f058001f137f2da18ba0ecc2fca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2133f058001f137f2da18ba0ecc2fca">&#9670;&#160;</a></span>rotl32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t rotl32 </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned</td>          <td class="paramname"><span class="paramname"><em>r</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Циклический сдвиг 32-битного числа влево. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Исходное значение. </td></tr>
+    <tr><td class="paramname">r</td><td>Количество бит для сдвига. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Результат циклического сдвига. </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00052">52</a></p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Переменные</h2>
+<a id="a49e0be6b18a90c58221f96ff8b3d537a" name="a49e0be6b18a90c58221f96ff8b3d537a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49e0be6b18a90c58221f96ff8b3d537a">&#9670;&#160;</a></span>BIN_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int BIN_SIZE = <a class="el" href="#a5fefccc65be47d75576682015826c583">RANGE_SIZE</a> / <a class="el" href="#a7b63ccc35ac484b9f41e37ccd0cb31bd">K</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Размер одного интервала для критерия хи-квадрат. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00040">40</a></p>
+
+</div>
+</div>
+<a id="a89671e289ebc456dda6af5289a9cc140" name="a89671e289ebc456dda6af5289a9cc140"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89671e289ebc456dda6af5289a9cc140">&#9670;&#160;</a></span>BIT_COUNT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int BIT_COUNT = 1000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Количество битов для NIST-подобных тестов. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00046">46</a></p>
+
+</div>
+</div>
+<a id="acc1333a53debfec1f6a112d257439cf4" name="acc1333a53debfec1f6a112d257439cf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc1333a53debfec1f6a112d257439cf4">&#9670;&#160;</a></span>CHI2_CRIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double CHI2_CRIT = 30.1435</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Критическое значение критерия хи-квадрат при 19 степенях свободы и alpha = 0.05. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00043">43</a></p>
+
+</div>
+</div>
+<a id="a7b63ccc35ac484b9f41e37ccd0cb31bd" name="a7b63ccc35ac484b9f41e37ccd0cb31bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b63ccc35ac484b9f41e37ccd0cb31bd">&#9670;&#160;</a></span>K</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int K = 20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Количество интервалов для критерия хи-квадрат. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00037">37</a></p>
+
+</div>
+</div>
+<a id="aba6cb037db93cd395e97699fab1e022e" name="aba6cb037db93cd395e97699fab1e022e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba6cb037db93cd395e97699fab1e022e">&#9670;&#160;</a></span>NUM_SAMPLES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int NUM_SAMPLES = 20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Количество выборок для статистического анализа. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00028">28</a></p>
+
+</div>
+</div>
+<a id="a5fefccc65be47d75576682015826c583" name="a5fefccc65be47d75576682015826c583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fefccc65be47d75576682015826c583">&#9670;&#160;</a></span>RANGE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int RANGE_SIZE = 10000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Размер диапазона случайных чисел. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00034">34</a></p>
+
+</div>
+</div>
+<a id="abb438dd06eaa3add6a90ac8aae07eb3a" name="abb438dd06eaa3add6a90ac8aae07eb3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb438dd06eaa3add6a90ac8aae07eb3a">&#9670;&#160;</a></span>SAMPLE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SAMPLE_SIZE = 1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Размер одной выборки. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="lab3__psrandom_8cpp_source.html">lab3_psrandom.cpp</a> строка <a class="el" href="lab3__psrandom_8cpp_source.html#l00031">31</a></p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="lab3__psrandom_8cpp.html">lab3_psrandom.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

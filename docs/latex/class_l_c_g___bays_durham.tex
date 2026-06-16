@@ -1,0 +1,114 @@
+\doxysection{Класс LCG\+\_\+\+Bays\+Durham}
+\hypertarget{class_l_c_g___bays_durham}{}\label{class_l_c_g___bays_durham}\index{LCG\_BaysDurham@{LCG\_BaysDurham}}
+
+
+Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-\/\+Durham.  
+
+
+\doxysubsubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_l_c_g___bays_durham_ae04020487f4122e75610d68dfb850de7}{LCG\+\_\+\+Bays\+Durham}} (uint64\+\_\+t seed=123456789ULL)
+\begin{DoxyCompactList}\small\item\em Конструктор генератора. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_l_c_g___bays_durham_acbbc705b2b402267ba32880af675483d}{seed}} (uint64\+\_\+t seed\+Value)
+\begin{DoxyCompactList}\small\item\em Переинициализация генератора новым зерном. \end{DoxyCompactList}\item 
+uint64\+\_\+t \doxymbox{\hyperlink{class_l_c_g___bays_durham_aa10c78c8ccaa7c0bbfd487d60bf681de}{next64}} ()
+\begin{DoxyCompactList}\small\item\em Генерация 64-\/битного псевдослучайного числа. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_l_c_g___bays_durham_a6f9bcf64ba298d9f06bc8a55cb742d44}{next}} ()
+\begin{DoxyCompactList}\small\item\em Генерация 32-\/битного числа. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-\/\+Durham. 
+
+Базовая последовательность получается линейным конгруэнтным генератором. Далее используется таблица перемешивания из 32 элементов для уменьшения корреляций. 
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00060}{60}}
+
+
+
+\label{class_l_c_g___bays_durham_doc-constructors}
+\Hypertarget{class_l_c_g___bays_durham_doc-constructors}
+\doxysubsection{Конструктор(ы)}
+\Hypertarget{class_l_c_g___bays_durham_ae04020487f4122e75610d68dfb850de7}\index{LCG\_BaysDurham@{LCG\_BaysDurham}!LCG\_BaysDurham@{LCG\_BaysDurham}}
+\index{LCG\_BaysDurham@{LCG\_BaysDurham}!LCG\_BaysDurham@{LCG\_BaysDurham}}
+\doxysubsubsection{\texorpdfstring{LCG\_BaysDurham()}{LCG\_BaysDurham()}}
+{\footnotesize\ttfamily \label{class_l_c_g___bays_durham_ae04020487f4122e75610d68dfb850de7} 
+LCG\+\_\+\+Bays\+Durham::\+\+LCG\+\_\+\+Bays\+Durham (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{seed}{ = {\ttfamily 123456789ULL}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Конструктор генератора. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em seed} & Начальное зерно. \\
+\hline
+\end{DoxyParams}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00079}{79}}
+
+
+
+\label{class_l_c_g___bays_durham_doc-func-members}
+\Hypertarget{class_l_c_g___bays_durham_doc-func-members}
+\doxysubsection{Методы}
+\Hypertarget{class_l_c_g___bays_durham_a6f9bcf64ba298d9f06bc8a55cb742d44}\index{LCG\_BaysDurham@{LCG\_BaysDurham}!next@{next}}
+\index{next@{next}!LCG\_BaysDurham@{LCG\_BaysDurham}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily \label{class_l_c_g___bays_durham_a6f9bcf64ba298d9f06bc8a55cb742d44} 
+uint32\+\_\+t LCG\+\_\+\+Bays\+Durham::\+next (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Генерация 32-\/битного числа. 
+
+\begin{DoxyReturn}{Возвращает}
+Следующее 32-\/битное значение. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00116}{116}}
+
+\Hypertarget{class_l_c_g___bays_durham_aa10c78c8ccaa7c0bbfd487d60bf681de}\index{LCG\_BaysDurham@{LCG\_BaysDurham}!next64@{next64}}
+\index{next64@{next64}!LCG\_BaysDurham@{LCG\_BaysDurham}}
+\doxysubsubsection{\texorpdfstring{next64()}{next64()}}
+{\footnotesize\ttfamily \label{class_l_c_g___bays_durham_aa10c78c8ccaa7c0bbfd487d60bf681de} 
+uint64\+\_\+t LCG\+\_\+\+Bays\+Durham::\+next64 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Генерация 64-\/битного псевдослучайного числа. 
+
+\begin{DoxyReturn}{Возвращает}
+Следующее 64-\/битное значение. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00099}{99}}
+
+\Hypertarget{class_l_c_g___bays_durham_acbbc705b2b402267ba32880af675483d}\index{LCG\_BaysDurham@{LCG\_BaysDurham}!seed@{seed}}
+\index{seed@{seed}!LCG\_BaysDurham@{LCG\_BaysDurham}}
+\doxysubsubsection{\texorpdfstring{seed()}{seed()}}
+{\footnotesize\ttfamily \label{class_l_c_g___bays_durham_acbbc705b2b402267ba32880af675483d} 
+void LCG\+\_\+\+Bays\+Durham::\+seed (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{seed\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Переинициализация генератора новым зерном. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em seed\+Value} & Новое зерно. \\
+\hline
+\end{DoxyParams}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00091}{91}}
+
+
+
+Объявления и описания членов класса находятся в файле:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{lab3__psrandom_8cpp}{lab3\+\_\+psrandom.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,95 @@
+\doxysection{Класс Standard\+MT}
+\hypertarget{class_standard_m_t}{}\label{class_standard_m_t}\index{StandardMT@{StandardMT}}
+
+
+Обёртка над стандартным генератором Mersenne Twister.  
+
+
+\doxysubsubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_standard_m_t_a3b1fe640a7ff2a50644153329d53be20}{Standard\+MT}} (uint64\+\_\+t seed=12345)
+\begin{DoxyCompactList}\small\item\em Конструктор генератора. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_standard_m_t_a3949909a8a292828a3ac31ff29deed0c}{seed}} (uint64\+\_\+t seed\+Value)
+\begin{DoxyCompactList}\small\item\em Переинициализация генератора. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_standard_m_t_ac687a7cff65222df0efa44364c9ea8a8}{next}} ()
+\begin{DoxyCompactList}\small\item\em Генерация 32-\/битного значения. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Обёртка над стандартным генератором Mersenne Twister. 
+
+Используется для сравнения скорости с пользовательскими генераторами. 
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00437}{437}}
+
+
+
+\label{class_standard_m_t_doc-constructors}
+\Hypertarget{class_standard_m_t_doc-constructors}
+\doxysubsection{Конструктор(ы)}
+\Hypertarget{class_standard_m_t_a3b1fe640a7ff2a50644153329d53be20}\index{StandardMT@{StandardMT}!StandardMT@{StandardMT}}
+\index{StandardMT@{StandardMT}!StandardMT@{StandardMT}}
+\doxysubsubsection{\texorpdfstring{StandardMT()}{StandardMT()}}
+{\footnotesize\ttfamily \label{class_standard_m_t_a3b1fe640a7ff2a50644153329d53be20} 
+Standard\+MT::\+\+Standard\+MT (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{seed}{ = {\ttfamily 12345}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Конструктор генератора. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em seed} & Начальное зерно. \\
+\hline
+\end{DoxyParams}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00443}{443}}
+
+
+
+\label{class_standard_m_t_doc-func-members}
+\Hypertarget{class_standard_m_t_doc-func-members}
+\doxysubsection{Методы}
+\Hypertarget{class_standard_m_t_ac687a7cff65222df0efa44364c9ea8a8}\index{StandardMT@{StandardMT}!next@{next}}
+\index{next@{next}!StandardMT@{StandardMT}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily \label{class_standard_m_t_ac687a7cff65222df0efa44364c9ea8a8} 
+uint32\+\_\+t Standard\+MT::\+next (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Генерация 32-\/битного значения. 
+
+\begin{DoxyReturn}{Возвращает}
+Следующее псевдослучайное число. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00453}{453}}
+
+\Hypertarget{class_standard_m_t_a3949909a8a292828a3ac31ff29deed0c}\index{StandardMT@{StandardMT}!seed@{seed}}
+\index{seed@{seed}!StandardMT@{StandardMT}}
+\doxysubsubsection{\texorpdfstring{seed()}{seed()}}
+{\footnotesize\ttfamily \label{class_standard_m_t_a3949909a8a292828a3ac31ff29deed0c} 
+void Standard\+MT::\+seed (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{seed\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Переинициализация генератора. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em seed\+Value} & Новое зерно. \\
+\hline
+\end{DoxyParams}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00449}{449}}
+
+
+
+Объявления и описания членов класса находятся в файле:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{lab3__psrandom_8cpp}{lab3\+\_\+psrandom.\+cpp}}\end{DoxyCompactItemize}

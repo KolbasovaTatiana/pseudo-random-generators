@@ -1,0 +1,96 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\babel@toc {russian}{}\relax 
+\contentsline {chapter}{\numberline {1}Лабораторная работа №3. Исследование генераторов псевдослучайных чисел }{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Цель работы}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Постановка задачи}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Теоретические сведения}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Описание реализованных генераторов}{2}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}LCG\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Bays\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Durham}{2}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Xorshift128\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}MLT}{2}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Additive\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}LFG\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rotate\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Xor}{2}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}Standard\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}MT}{2}{subsection.1.4.4}%
+\contentsline {section}{\numberline {1.5}Описание статистических тестов}{3}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Описательные статистики}{3}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}NIST-\/подобные тесты}{3}{subsection.1.5.2}%
+\contentsline {section}{\numberline {1.6}Описание программы}{3}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Результаты экспериментов}{4}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Описательные статистики}{4}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Графики описательных статистик}{4}{subsection.1.7.2}%
+\contentsline {subsection}{\numberline {1.7.3}Результаты NIST-\/подобных тестов}{4}{subsection.1.7.3}%
+\contentsline {subsection}{\numberline {1.7.4}График NIST-\/подобных тестов}{4}{subsection.1.7.4}%
+\contentsline {subsection}{\numberline {1.7.5}Скорость генерации}{4}{subsection.1.7.5}%
+\contentsline {subsection}{\numberline {1.7.6}График скорости генерации}{4}{subsection.1.7.6}%
+\contentsline {section}{\numberline {1.8}Анализ результатов}{4}{section.1.8}%
+\contentsline {section}{\numberline {1.9}Выводы}{5}{section.1.9}%
+\contentsline {section}{\numberline {1.10}Репозиторий проекта}{5}{section.1.10}%
+\contentsline {chapter}{\numberline {2}Алфавитный указатель классов}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Классы}{7}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Список файлов}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Файлы}{9}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Классы}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Класс Additive\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}LFG\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Rotate\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Xor}{11}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Подробное описание}{11}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Конструктор(ы)}{12}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}AdditiveLFG\_RotateXor()}{12}{subsubsection.4.1.2.1}%
+\contentsline {subsection}{\numberline {4.1.3}Методы}{12}{subsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.1}next()}{12}{subsubsection.4.1.3.1}%
+\contentsline {subsubsection}{\numberline {4.1.3.2}next32()}{12}{subsubsection.4.1.3.2}%
+\contentsline {subsubsection}{\numberline {4.1.3.3}seed()}{13}{subsubsection.4.1.3.3}%
+\contentsline {section}{\numberline {4.2}Класс LCG\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Bays\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Durham}{13}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Подробное описание}{13}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Конструктор(ы)}{14}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}LCG\_BaysDurham()}{14}{subsubsection.4.2.2.1}%
+\contentsline {subsection}{\numberline {4.2.3}Методы}{14}{subsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.3.1}next()}{14}{subsubsection.4.2.3.1}%
+\contentsline {subsubsection}{\numberline {4.2.3.2}next64()}{14}{subsubsection.4.2.3.2}%
+\contentsline {subsubsection}{\numberline {4.2.3.3}seed()}{15}{subsubsection.4.2.3.3}%
+\contentsline {section}{\numberline {4.3}Структура Sample\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stats}{15}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Подробное описание}{15}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Данные класса}{15}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}chi2}{15}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}cv}{16}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}mean}{16}{subsubsection.4.3.2.3}%
+\contentsline {subsubsection}{\numberline {4.3.2.4}stddev}{16}{subsubsection.4.3.2.4}%
+\contentsline {subsubsection}{\numberline {4.3.2.5}uniform}{16}{subsubsection.4.3.2.5}%
+\contentsline {section}{\numberline {4.4}Класс Standard\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}MT}{16}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Подробное описание}{17}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Конструктор(ы)}{17}{subsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}StandardMT()}{17}{subsubsection.4.4.2.1}%
+\contentsline {subsection}{\numberline {4.4.3}Методы}{17}{subsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.1}next()}{17}{subsubsection.4.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.4.3.2}seed()}{17}{subsubsection.4.4.3.2}%
+\contentsline {section}{\numberline {4.5}Класс Xorshift128\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}MLT}{18}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Подробное описание}{18}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Конструктор(ы)}{18}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}Xorshift128\_MLT()}{18}{subsubsection.4.5.2.1}%
+\contentsline {subsection}{\numberline {4.5.3}Методы}{18}{subsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.3.1}next()}{18}{subsubsection.4.5.3.1}%
+\contentsline {subsubsection}{\numberline {4.5.3.2}next64()}{19}{subsubsection.4.5.3.2}%
+\contentsline {subsubsection}{\numberline {4.5.3.3}seed()}{19}{subsubsection.4.5.3.3}%
+\contentsline {chapter}{\numberline {5}Файлы}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Файл lab3\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}psrandom.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{21}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Подробное описание}{23}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Функции}{23}{subsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.1}computeStats()}{23}{subsubsection.5.1.2.1}%
+\contentsline {subsubsection}{\numberline {5.1.2.2}generateBits()}{23}{subsubsection.5.1.2.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.3}generateSample()}{24}{subsubsection.5.1.2.3}%
+\contentsline {subsubsection}{\numberline {5.1.2.4}main()}{24}{subsubsection.5.1.2.4}%
+\contentsline {subsubsection}{\numberline {5.1.2.5}measureGenerationTime()}{25}{subsubsection.5.1.2.5}%
+\contentsline {subsubsection}{\numberline {5.1.2.6}my\_erfc()}{25}{subsubsection.5.1.2.6}%
+\contentsline {subsubsection}{\numberline {5.1.2.7}nist\_block\_frequency()}{26}{subsubsection.5.1.2.7}%
+\contentsline {subsubsection}{\numberline {5.1.2.8}nist\_cusum()}{26}{subsubsection.5.1.2.8}%
+\contentsline {subsubsection}{\numberline {5.1.2.9}nist\_longest\_run()}{26}{subsubsection.5.1.2.9}%
+\contentsline {subsubsection}{\numberline {5.1.2.10}nist\_monobit()}{27}{subsubsection.5.1.2.10}%
+\contentsline {subsubsection}{\numberline {5.1.2.11}nist\_runs()}{27}{subsubsection.5.1.2.11}%
+\contentsline {subsubsection}{\numberline {5.1.2.12}p\_value\_from\_chi2()}{28}{subsubsection.5.1.2.12}%
+\contentsline {subsubsection}{\numberline {5.1.2.13}rotl32()}{28}{subsubsection.5.1.2.13}%
+\contentsline {subsection}{\numberline {5.1.3}Переменные}{28}{subsection.5.1.3}%
+\contentsline {subsubsection}{\numberline {5.1.3.1}BIN\_SIZE}{28}{subsubsection.5.1.3.1}%
+\contentsline {subsubsection}{\numberline {5.1.3.2}BIT\_COUNT}{29}{subsubsection.5.1.3.2}%
+\contentsline {subsubsection}{\numberline {5.1.3.3}CHI2\_CRIT}{29}{subsubsection.5.1.3.3}%
+\contentsline {subsubsection}{\numberline {5.1.3.4}K}{29}{subsubsection.5.1.3.4}%
+\contentsline {subsubsection}{\numberline {5.1.3.5}NUM\_SAMPLES}{29}{subsubsection.5.1.3.5}%
+\contentsline {subsubsection}{\numberline {5.1.3.6}RANGE\_SIZE}{29}{subsubsection.5.1.3.6}%
+\contentsline {subsubsection}{\numberline {5.1.3.7}SAMPLE\_SIZE}{29}{subsubsection.5.1.3.7}%
+\contentsline {section}{\numberline {5.2}lab3\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}psrandom.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{30}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Файл README.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}md}{35}{section.5.3}%

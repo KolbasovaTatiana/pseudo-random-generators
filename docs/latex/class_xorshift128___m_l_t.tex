@@ -1,0 +1,114 @@
+\doxysection{Класс Xorshift128\+\_\+\+MLT}
+\hypertarget{class_xorshift128___m_l_t}{}\label{class_xorshift128___m_l_t}\index{Xorshift128\_MLT@{Xorshift128\_MLT}}
+
+
+Генератор xorshift128 с дополнительным перемешиванием.  
+
+
+\doxysubsubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_xorshift128___m_l_t_a4d06110ebae70e6f69bbeccbc42cedd8}{Xorshift128\+\_\+\+MLT}} (uint64\+\_\+t seed=123456789ULL)
+\begin{DoxyCompactList}\small\item\em Конструктор генератора. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_xorshift128___m_l_t_a8ba6adcfadea313529ccce0d5d1e16fc}{seed}} (uint64\+\_\+t seed\+Value)
+\begin{DoxyCompactList}\small\item\em Переинициализация генератора. \end{DoxyCompactList}\item 
+uint64\+\_\+t \doxymbox{\hyperlink{class_xorshift128___m_l_t_a76f83d87cc3abb4d2116db672e2dcdb5}{next64}} ()
+\begin{DoxyCompactList}\small\item\em Генерация 64-\/битного числа. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_xorshift128___m_l_t_a33f8fb1de460afcd93117a0d05298d2b}{next}} ()
+\begin{DoxyCompactList}\small\item\em Генерация 32-\/битного числа. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Генератор xorshift128 с дополнительным перемешиванием. 
+
+Используется схема xorshift128, после которой результат дополнительно подвергается смешиванию для улучшения статистических свойств. 
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00125}{125}}
+
+
+
+\label{class_xorshift128___m_l_t_doc-constructors}
+\Hypertarget{class_xorshift128___m_l_t_doc-constructors}
+\doxysubsection{Конструктор(ы)}
+\Hypertarget{class_xorshift128___m_l_t_a4d06110ebae70e6f69bbeccbc42cedd8}\index{Xorshift128\_MLT@{Xorshift128\_MLT}!Xorshift128\_MLT@{Xorshift128\_MLT}}
+\index{Xorshift128\_MLT@{Xorshift128\_MLT}!Xorshift128\_MLT@{Xorshift128\_MLT}}
+\doxysubsubsection{\texorpdfstring{Xorshift128\_MLT()}{Xorshift128\_MLT()}}
+{\footnotesize\ttfamily \label{class_xorshift128___m_l_t_a4d06110ebae70e6f69bbeccbc42cedd8} 
+Xorshift128\+\_\+\+MLT::\+\+Xorshift128\+\_\+\+MLT (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{seed}{ = {\ttfamily 123456789ULL}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Конструктор генератора. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em seed} & Начальное зерно. \\
+\hline
+\end{DoxyParams}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00131}{131}}
+
+
+
+\label{class_xorshift128___m_l_t_doc-func-members}
+\Hypertarget{class_xorshift128___m_l_t_doc-func-members}
+\doxysubsection{Методы}
+\Hypertarget{class_xorshift128___m_l_t_a33f8fb1de460afcd93117a0d05298d2b}\index{Xorshift128\_MLT@{Xorshift128\_MLT}!next@{next}}
+\index{next@{next}!Xorshift128\_MLT@{Xorshift128\_MLT}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily \label{class_xorshift128___m_l_t_a33f8fb1de460afcd93117a0d05298d2b} 
+uint32\+\_\+t Xorshift128\+\_\+\+MLT::\+next (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Генерация 32-\/битного числа. 
+
+\begin{DoxyReturn}{Возвращает}
+Следующее 32-\/битное значение. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00167}{167}}
+
+\Hypertarget{class_xorshift128___m_l_t_a76f83d87cc3abb4d2116db672e2dcdb5}\index{Xorshift128\_MLT@{Xorshift128\_MLT}!next64@{next64}}
+\index{next64@{next64}!Xorshift128\_MLT@{Xorshift128\_MLT}}
+\doxysubsubsection{\texorpdfstring{next64()}{next64()}}
+{\footnotesize\ttfamily \label{class_xorshift128___m_l_t_a76f83d87cc3abb4d2116db672e2dcdb5} 
+uint64\+\_\+t Xorshift128\+\_\+\+MLT::\+next64 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Генерация 64-\/битного числа. 
+
+\begin{DoxyReturn}{Возвращает}
+Следующее 64-\/битное значение. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00146}{146}}
+
+\Hypertarget{class_xorshift128___m_l_t_a8ba6adcfadea313529ccce0d5d1e16fc}\index{Xorshift128\_MLT@{Xorshift128\_MLT}!seed@{seed}}
+\index{seed@{seed}!Xorshift128\_MLT@{Xorshift128\_MLT}}
+\doxysubsubsection{\texorpdfstring{seed()}{seed()}}
+{\footnotesize\ttfamily \label{class_xorshift128___m_l_t_a8ba6adcfadea313529ccce0d5d1e16fc} 
+void Xorshift128\+\_\+\+MLT::\+seed (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{seed\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Переинициализация генератора. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em seed\+Value} & Новое зерно. \\
+\hline
+\end{DoxyParams}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00137}{137}}
+
+
+
+Объявления и описания членов класса находятся в файле:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{lab3__psrandom_8cpp}{lab3\+\_\+psrandom.\+cpp}}\end{DoxyCompactItemize}

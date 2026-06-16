@@ -1,0 +1,28 @@
+var lab3__psrandom_8cpp =
+[
+    [ "LCG_BaysDurham", "class_l_c_g___bays_durham.html", "class_l_c_g___bays_durham" ],
+    [ "Xorshift128_MLT", "class_xorshift128___m_l_t.html", "class_xorshift128___m_l_t" ],
+    [ "AdditiveLFG_RotateXor", "class_additive_l_f_g___rotate_xor.html", "class_additive_l_f_g___rotate_xor" ],
+    [ "SampleStats", "struct_sample_stats.html", "struct_sample_stats" ],
+    [ "StandardMT", "class_standard_m_t.html", "class_standard_m_t" ],
+    [ "computeStats", "lab3__psrandom_8cpp.html#ad655fe4347424d2ea2a6fe9bd6c4ae0c", null ],
+    [ "generateBits", "lab3__psrandom_8cpp.html#a2099e95222d3fe18d0bd85d5c6402bf5", null ],
+    [ "generateSample", "lab3__psrandom_8cpp.html#a66d117a8d4ff064015568b237b324c07", null ],
+    [ "main", "lab3__psrandom_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4", null ],
+    [ "measureGenerationTime", "lab3__psrandom_8cpp.html#a814a07e427f0df0f3824f053d98f09cf", null ],
+    [ "my_erfc", "lab3__psrandom_8cpp.html#a0c3df977c8031692f0d249977766f1b7", null ],
+    [ "nist_block_frequency", "lab3__psrandom_8cpp.html#a6e1649e5522803277804470ab3fe1888", null ],
+    [ "nist_cusum", "lab3__psrandom_8cpp.html#ac08978b2e016601d96f948e7da57052d", null ],
+    [ "nist_longest_run", "lab3__psrandom_8cpp.html#a1d881f4dfd5a20497b1a1c264f1ec2ea", null ],
+    [ "nist_monobit", "lab3__psrandom_8cpp.html#a49098e3887a1310c0476f7a7fad2a94c", null ],
+    [ "nist_runs", "lab3__psrandom_8cpp.html#af94f7069d60a35e07f6a500fc789f16d", null ],
+    [ "p_value_from_chi2", "lab3__psrandom_8cpp.html#ab55cbd12576c03f2b2e21c377e8069e9", null ],
+    [ "rotl32", "lab3__psrandom_8cpp.html#aa2133f058001f137f2da18ba0ecc2fca", null ],
+    [ "BIN_SIZE", "lab3__psrandom_8cpp.html#a49e0be6b18a90c58221f96ff8b3d537a", null ],
+    [ "BIT_COUNT", "lab3__psrandom_8cpp.html#a89671e289ebc456dda6af5289a9cc140", null ],
+    [ "CHI2_CRIT", "lab3__psrandom_8cpp.html#acc1333a53debfec1f6a112d257439cf4", null ],
+    [ "K", "lab3__psrandom_8cpp.html#a7b63ccc35ac484b9f41e37ccd0cb31bd", null ],
+    [ "NUM_SAMPLES", "lab3__psrandom_8cpp.html#aba6cb037db93cd395e97699fab1e022e", null ],
+    [ "RANGE_SIZE", "lab3__psrandom_8cpp.html#a5fefccc65be47d75576682015826c583", null ],
+    [ "SAMPLE_SIZE", "lab3__psrandom_8cpp.html#abb438dd06eaa3add6a90ac8aae07eb3a", null ]
+];

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Лабораторная работа №3. Генераторы псевдослучайных чисел: Члены классов - Функции</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Лабораторная работа №3. Генераторы псевдослучайных чисел
+   </div>
+   <div id="projectbrief">Статистический и скоростной анализ пользовательских ГПСЧ</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('functions_func.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="contents">
+<div class="textblock">Список всех функций со ссылками на классы, к которым они относятся:</div><br/>
+<div class="qindex"><a class="qindex" href="#index_a">A</a><div class="alphasepar"></div><a class="qindex" href="#index_l">L</a><div class="alphasepar"></div><a class="qindex" href="#index_n">N</a><div class="alphasepar"></div><a class="qindex" href="#index_s">S</a><div class="alphasepar"></div><a class="qindex" href="#index_x">X</a></div>
+<ul>
+<li>AdditiveLFG_RotateXor()&#160;:&#160;<a class="el" href="class_additive_l_f_g___rotate_xor.html#af972d50f78bf6c52f93ca4afd85f0140">AdditiveLFG_RotateXor</a></li>
+<li>LCG_BaysDurham()&#160;:&#160;<a class="el" href="class_l_c_g___bays_durham.html#ae04020487f4122e75610d68dfb850de7">LCG_BaysDurham</a></li>
+<li>next()&#160;:&#160;<a class="el" href="class_additive_l_f_g___rotate_xor.html#accad9c4465bf17afb11341285d437808">AdditiveLFG_RotateXor</a>, <a class="el" href="class_l_c_g___bays_durham.html#a6f9bcf64ba298d9f06bc8a55cb742d44">LCG_BaysDurham</a>, <a class="el" href="class_standard_m_t.html#ac687a7cff65222df0efa44364c9ea8a8">StandardMT</a>, <a class="el" href="class_xorshift128___m_l_t.html#a33f8fb1de460afcd93117a0d05298d2b">Xorshift128_MLT</a></li>
+<li>next32()&#160;:&#160;<a class="el" href="class_additive_l_f_g___rotate_xor.html#a57ecc25435579009aa4df237a48e60e2">AdditiveLFG_RotateXor</a></li>
+<li>next64()&#160;:&#160;<a class="el" href="class_l_c_g___bays_durham.html#aa10c78c8ccaa7c0bbfd487d60bf681de">LCG_BaysDurham</a>, <a class="el" href="class_xorshift128___m_l_t.html#a76f83d87cc3abb4d2116db672e2dcdb5">Xorshift128_MLT</a></li>
+<li>seed()&#160;:&#160;<a class="el" href="class_additive_l_f_g___rotate_xor.html#a8af977a58910a78f8e1a0c0d05c26a12">AdditiveLFG_RotateXor</a>, <a class="el" href="class_l_c_g___bays_durham.html#acbbc705b2b402267ba32880af675483d">LCG_BaysDurham</a>, <a class="el" href="class_standard_m_t.html#a3949909a8a292828a3ac31ff29deed0c">StandardMT</a>, <a class="el" href="class_xorshift128___m_l_t.html#a8ba6adcfadea313529ccce0d5d1e16fc">Xorshift128_MLT</a></li>
+<li>StandardMT()&#160;:&#160;<a class="el" href="class_standard_m_t.html#a3b1fe640a7ff2a50644153329d53be20">StandardMT</a></li>
+<li>Xorshift128_MLT()&#160;:&#160;<a class="el" href="class_xorshift128___m_l_t.html#a4d06110ebae70e6f69bbeccbc42cedd8">Xorshift128_MLT</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+generator,monobit,block_freq,runs,longest_run,cusum_forward,cusum_backward
+LCG_BaysDurham,0.216459,0.617228,0.370502,0.950109,0.040170,0.215346
+Xorshift128_MLT,0.212764,0.372327,0.729805,0.537482,0.088568,0.140213
+AdditiveLFG_RotateXor,0.015182,0.183798,0.530011,0.319572,0.009880,0.007699

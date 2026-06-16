@@ -1,0 +1,516 @@
+\doxysection{Файл lab3\+\_\+psrandom.\+cpp}
+\hypertarget{lab3__psrandom_8cpp}{}\label{lab3__psrandom_8cpp}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+
+
+Лабораторная работа №3. Исследование генераторов псевдослучайных чисел.  
+
+
+{\ttfamily \+\#include $<$algorithm$>$}\newline
+{\ttfamily \+\#include $<$array$>$}\newline
+{\ttfamily \+\#include $<$chrono$>$}\newline
+{\ttfamily \+\#include $<$cmath$>$}\newline
+{\ttfamily \+\#include $<$cstdint$>$}\newline
+{\ttfamily \+\#include $<$cstdio$>$}\newline
+{\ttfamily \+\#include $<$cstdlib$>$}\newline
+{\ttfamily \+\#include $<$functional$>$}\newline
+{\ttfamily \+\#include $<$iomanip$>$}\newline
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$limits$>$}\newline
+{\ttfamily \+\#include $<$numeric$>$}\newline
+{\ttfamily \+\#include $<$random$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+\doxysubsubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_l_c_g___bays_durham}{LCG\+\_\+\+Bays\+Durham}}
+\begin{DoxyCompactList}\small\item\em Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-\/\+Durham. \end{DoxyCompactList}\item 
+class \doxymbox{\hyperlink{class_xorshift128___m_l_t}{Xorshift128\+\_\+\+MLT}}
+\begin{DoxyCompactList}\small\item\em Генератор xorshift128 с дополнительным перемешиванием. \end{DoxyCompactList}\item 
+class \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor}{Additive\+LFG\+\_\+\+Rotate\+Xor}}
+\begin{DoxyCompactList}\small\item\em Аддитивный лаговый рекуррентный генератор с вращением и XOR. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_sample_stats}{Sample\+Stats}}
+\begin{DoxyCompactList}\small\item\em Структура статистик для одной выборки. \end{DoxyCompactList}\item 
+class \doxymbox{\hyperlink{class_standard_m_t}{Standard\+MT}}
+\begin{DoxyCompactList}\small\item\em Обёртка над стандартным генератором Mersenne Twister. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{lab3__psrandom_8cpp_aa2133f058001f137f2da18ba0ecc2fca}{rotl32}} (uint32\+\_\+t x, unsigned r)
+\begin{DoxyCompactList}\small\item\em Циклический сдвиг 32-\/битного числа влево. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_sample_stats}{Sample\+Stats}} \doxymbox{\hyperlink{lab3__psrandom_8cpp_ad655fe4347424d2ea2a6fe9bd6c4ae0c}{compute\+Stats}} (const vector$<$ int $>$ \&sample)
+\begin{DoxyCompactList}\small\item\em Вычисляет статистики для выборки случайных чисел. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Gen$>$ }\\vector$<$ int $>$ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a66d117a8d4ff064015568b237b324c07}{generate\+Sample}} (Gen \&gen, int size, int range)
+\begin{DoxyCompactList}\small\item\em Генерирует выборку случайных чисел заданного размера. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{lab3__psrandom_8cpp_a0c3df977c8031692f0d249977766f1b7}{my\+\_\+erfc}} (double x)
+\begin{DoxyCompactList}\small\item\em Аппроксимация дополнительной функции ошибок. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{lab3__psrandom_8cpp_ab55cbd12576c03f2b2e21c377e8069e9}{p\+\_\+value\+\_\+from\+\_\+chi2}} (double chi2, int df)
+\begin{DoxyCompactList}\small\item\em Вычисляет p-\/value для статистики хи-\/квадрат. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{lab3__psrandom_8cpp_a49098e3887a1310c0476f7a7fad2a94c}{nist\+\_\+monobit}} (const vector$<$ uint8\+\_\+t $>$ \&bits)
+\begin{DoxyCompactList}\small\item\em NIST-\/подобный монобитный тест. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{lab3__psrandom_8cpp_a6e1649e5522803277804470ab3fe1888}{nist\+\_\+block\+\_\+frequency}} (const vector$<$ uint8\+\_\+t $>$ \&bits, int M=128)
+\begin{DoxyCompactList}\small\item\em NIST-\/подобный тест частоты в блоках. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{lab3__psrandom_8cpp_af94f7069d60a35e07f6a500fc789f16d}{nist\+\_\+runs}} (const vector$<$ uint8\+\_\+t $>$ \&bits)
+\begin{DoxyCompactList}\small\item\em NIST-\/подобный тест серий. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{lab3__psrandom_8cpp_a1d881f4dfd5a20497b1a1c264f1ec2ea}{nist\+\_\+longest\+\_\+run}} (const vector$<$ uint8\+\_\+t $>$ \&bits)
+\begin{DoxyCompactList}\small\item\em NIST-\/подобный тест на длину наибольшей серии единиц. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{lab3__psrandom_8cpp_ac08978b2e016601d96f948e7da57052d}{nist\+\_\+cusum}} (const vector$<$ uint8\+\_\+t $>$ \&bits, bool forward=true)
+\begin{DoxyCompactList}\small\item\em NIST-\/подобный тест кумулятивных сумм. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Gen$>$ }\\vector$<$ uint8\+\_\+t $>$ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a2099e95222d3fe18d0bd85d5c6402bf5}{generate\+Bits}} (Gen \&gen, int num\+Bits)
+\begin{DoxyCompactList}\small\item\em Генерирует битовую последовательность. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Gen$>$ }\\double \doxymbox{\hyperlink{lab3__psrandom_8cpp_a814a07e427f0df0f3824f053d98f09cf}{measure\+Generation\+Time}} (Gen \&gen, int count)
+\begin{DoxyCompactList}\small\item\em Измеряет время генерации заданного количества чисел. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{lab3__psrandom_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Точка входа в программу. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+const int \doxymbox{\hyperlink{lab3__psrandom_8cpp_aba6cb037db93cd395e97699fab1e022e}{NUM\+\_\+\+SAMPLES}} = 20
+\begin{DoxyCompactList}\small\item\em Количество выборок для статистического анализа. \end{DoxyCompactList}\item 
+const int \doxymbox{\hyperlink{lab3__psrandom_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a}{SAMPLE\+\_\+\+SIZE}} = 1000
+\begin{DoxyCompactList}\small\item\em Размер одной выборки. \end{DoxyCompactList}\item 
+const int \doxymbox{\hyperlink{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583}{RANGE\+\_\+\+SIZE}} = 10000
+\begin{DoxyCompactList}\small\item\em Размер диапазона случайных чисел. \end{DoxyCompactList}\item 
+const int \doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{K}} = 20
+\begin{DoxyCompactList}\small\item\em Количество интервалов для критерия хи-\/квадрат. \end{DoxyCompactList}\item 
+const int \doxymbox{\hyperlink{lab3__psrandom_8cpp_a49e0be6b18a90c58221f96ff8b3d537a}{BIN\+\_\+\+SIZE}} = \doxymbox{\hyperlink{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583}{RANGE\+\_\+\+SIZE}} /\+ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{K}}
+\begin{DoxyCompactList}\small\item\em Размер одного интервала для критерия хи-\/квадрат. \end{DoxyCompactList}\item 
+const double \doxymbox{\hyperlink{lab3__psrandom_8cpp_acc1333a53debfec1f6a112d257439cf4}{CHI2\+\_\+\+CRIT}} = 30.\+1435
+\begin{DoxyCompactList}\small\item\em Критическое значение критерия хи-\/квадрат при 19 степенях свободы и alpha = 0.\+05. \end{DoxyCompactList}\item 
+const int \doxymbox{\hyperlink{lab3__psrandom_8cpp_a89671e289ebc456dda6af5289a9cc140}{BIT\+\_\+\+COUNT}} = 1000000
+\begin{DoxyCompactList}\small\item\em Количество битов для NIST-\/подобных тестов. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Лабораторная работа №3. Исследование генераторов псевдослучайных чисел. 
+
+Программа реализует три пользовательских генератора псевдослучайных чисел, сравнивает их статистические характеристики, выполняет упрощённые NIST-\/подобные тесты и измеряет скорость генерации. Результаты сохраняются в CSV-\/файлы для последующего построения графиков и включения в отчёт Doxygen. 
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}}
+
+
+
+\label{lab3__psrandom_8cpp_doc-func-members}
+\Hypertarget{lab3__psrandom_8cpp_doc-func-members}
+\doxysubsection{Функции}
+\Hypertarget{lab3__psrandom_8cpp_ad655fe4347424d2ea2a6fe9bd6c4ae0c}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!computeStats@{computeStats}}
+\index{computeStats@{computeStats}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{computeStats()}{computeStats()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_ad655fe4347424d2ea2a6fe9bd6c4ae0c} 
+\doxymbox{\hyperlink{struct_sample_stats}{Sample\+Stats}} compute\+Stats (\begin{DoxyParamCaption}\item[{const vector$<$ int $>$ \&}]{sample}{}\end{DoxyParamCaption})}
+
+
+
+Вычисляет статистики для выборки случайных чисел. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em sample} & Выборка целых чисел. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Заполненная структура статистик. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00251}{251}}
+
+\Hypertarget{lab3__psrandom_8cpp_a2099e95222d3fe18d0bd85d5c6402bf5}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!generateBits@{generateBits}}
+\index{generateBits@{generateBits}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{generateBits()}{generateBits()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a2099e95222d3fe18d0bd85d5c6402bf5} 
+template$<$typename Gen$>$ \\
+vector$<$ uint8\+\_\+t $>$ generate\+Bits (\begin{DoxyParamCaption}\item[{Gen \&}]{gen}{, }\item[{int}]{num\+Bits}{}\end{DoxyParamCaption})}
+
+
+
+Генерирует битовую последовательность. 
+
+
+\begin{DoxyTemplParams}{Параметры шаблона}
+{\em Gen} & Тип генератора. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Аргументы}
+{\em gen} & Экземпляр генератора. \\
+\hline
+{\em num\+Bits} & Количество бит. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Вектор битов. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00462}{462}}
+
+\Hypertarget{lab3__psrandom_8cpp_a66d117a8d4ff064015568b237b324c07}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!generateSample@{generateSample}}
+\index{generateSample@{generateSample}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{generateSample()}{generateSample()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a66d117a8d4ff064015568b237b324c07} 
+template$<$typename Gen$>$ \\
+vector$<$ int $>$ generate\+Sample (\begin{DoxyParamCaption}\item[{Gen \&}]{gen}{, }\item[{int}]{size}{, }\item[{int}]{range}{}\end{DoxyParamCaption})}
+
+
+
+Генерирует выборку случайных чисел заданного размера. 
+
+
+\begin{DoxyTemplParams}{Параметры шаблона}
+{\em Gen} & Тип генератора. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Аргументы}
+{\em gen} & Экземпляр генератора. \\
+\hline
+{\em size} & Размер выборки. \\
+\hline
+{\em range} & Размер диапазона значений. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Вектор случайных чисел. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00287}{287}}
+
+\Hypertarget{lab3__psrandom_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!main@{main}}
+\index{main@{main}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Точка входа в программу. 
+
+Программа:\+
+\begin{DoxyItemize}
+\item вычисляет описательные статистики для 20 выборок каждого генератора;
+\item сохраняет их в файл output/\+random\+\_\+stats.\+csv;
+\item выполняет NIST-\/подобные тесты и сохраняет результаты в output/\+nist\+\_\+results.\+csv;
+\item измеряет скорость генерации и сохраняет её в output/\+speed\+\_\+results.\+csv. 
+\end{DoxyItemize}
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00495}{495}}
+
+\Hypertarget{lab3__psrandom_8cpp_a814a07e427f0df0f3824f053d98f09cf}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!measureGenerationTime@{measureGenerationTime}}
+\index{measureGenerationTime@{measureGenerationTime}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{measureGenerationTime()}{measureGenerationTime()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a814a07e427f0df0f3824f053d98f09cf} 
+template$<$typename Gen$>$ \\
+double measure\+Generation\+Time (\begin{DoxyParamCaption}\item[{Gen \&}]{gen}{, }\item[{int}]{count}{}\end{DoxyParamCaption})}
+
+
+
+Измеряет время генерации заданного количества чисел. 
+
+
+\begin{DoxyTemplParams}{Параметры шаблона}
+{\em Gen} & Тип генератора. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Аргументы}
+{\em gen} & Экземпляр генератора. \\
+\hline
+{\em count} & Количество генерируемых значений. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Время генерации в миллисекундах. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00478}{478}}
+
+\Hypertarget{lab3__psrandom_8cpp_a0c3df977c8031692f0d249977766f1b7}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!my\_erfc@{my\_erfc}}
+\index{my\_erfc@{my\_erfc}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{my\_erfc()}{my\_erfc()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a0c3df977c8031692f0d249977766f1b7} 
+double my\+\_\+erfc (\begin{DoxyParamCaption}\item[{double}]{x}{}\end{DoxyParamCaption})}
+
+
+
+Аппроксимация дополнительной функции ошибок. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em x} & Аргумент. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Значение erfc(x). 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00298}{298}}
+
+\Hypertarget{lab3__psrandom_8cpp_a6e1649e5522803277804470ab3fe1888}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!nist\_block\_frequency@{nist\_block\_frequency}}
+\index{nist\_block\_frequency@{nist\_block\_frequency}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{nist\_block\_frequency()}{nist\_block\_frequency()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a6e1649e5522803277804470ab3fe1888} 
+double nist\+\_\+block\+\_\+frequency (\begin{DoxyParamCaption}\item[{const vector$<$ uint8\+\_\+t $>$ \&}]{bits}{, }\item[{int}]{M}{ = {\ttfamily 128}}\end{DoxyParamCaption})}
+
+
+
+NIST-\/подобный тест частоты в блоках. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em bits} & Последовательность битов. \\
+\hline
+{\em M} & Размер блока. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+p-\/value теста. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00331}{331}}
+
+\Hypertarget{lab3__psrandom_8cpp_ac08978b2e016601d96f948e7da57052d}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!nist\_cusum@{nist\_cusum}}
+\index{nist\_cusum@{nist\_cusum}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{nist\_cusum()}{nist\_cusum()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_ac08978b2e016601d96f948e7da57052d} 
+double nist\+\_\+cusum (\begin{DoxyParamCaption}\item[{const vector$<$ uint8\+\_\+t $>$ \&}]{bits}{, }\item[{bool}]{forward}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+NIST-\/подобный тест кумулятивных сумм. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em bits} & Последовательность битов. \\
+\hline
+{\em forward} & Направление обхода последовательности. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+p-\/value теста. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00412}{412}}
+
+\Hypertarget{lab3__psrandom_8cpp_a1d881f4dfd5a20497b1a1c264f1ec2ea}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!nist\_longest\_run@{nist\_longest\_run}}
+\index{nist\_longest\_run@{nist\_longest\_run}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{nist\_longest\_run()}{nist\_longest\_run()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a1d881f4dfd5a20497b1a1c264f1ec2ea} 
+double nist\+\_\+longest\+\_\+run (\begin{DoxyParamCaption}\item[{const vector$<$ uint8\+\_\+t $>$ \&}]{bits}{}\end{DoxyParamCaption})}
+
+
+
+NIST-\/подобный тест на длину наибольшей серии единиц. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em bits} & Последовательность битов. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+p-\/value теста. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00369}{369}}
+
+\Hypertarget{lab3__psrandom_8cpp_a49098e3887a1310c0476f7a7fad2a94c}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!nist\_monobit@{nist\_monobit}}
+\index{nist\_monobit@{nist\_monobit}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{nist\_monobit()}{nist\_monobit()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a49098e3887a1310c0476f7a7fad2a94c} 
+double nist\+\_\+monobit (\begin{DoxyParamCaption}\item[{const vector$<$ uint8\+\_\+t $>$ \&}]{bits}{}\end{DoxyParamCaption})}
+
+
+
+NIST-\/подобный монобитный тест. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em bits} & Последовательность битов. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+p-\/value теста. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00318}{318}}
+
+\Hypertarget{lab3__psrandom_8cpp_af94f7069d60a35e07f6a500fc789f16d}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!nist\_runs@{nist\_runs}}
+\index{nist\_runs@{nist\_runs}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{nist\_runs()}{nist\_runs()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_af94f7069d60a35e07f6a500fc789f16d} 
+double nist\+\_\+runs (\begin{DoxyParamCaption}\item[{const vector$<$ uint8\+\_\+t $>$ \&}]{bits}{}\end{DoxyParamCaption})}
+
+
+
+NIST-\/подобный тест серий. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em bits} & Последовательность битов. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+p-\/value теста. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00350}{350}}
+
+\Hypertarget{lab3__psrandom_8cpp_ab55cbd12576c03f2b2e21c377e8069e9}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!p\_value\_from\_chi2@{p\_value\_from\_chi2}}
+\index{p\_value\_from\_chi2@{p\_value\_from\_chi2}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{p\_value\_from\_chi2()}{p\_value\_from\_chi2()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_ab55cbd12576c03f2b2e21c377e8069e9} 
+double p\+\_\+value\+\_\+from\+\_\+chi2 (\begin{DoxyParamCaption}\item[{double}]{chi2}{, }\item[{int}]{df}{}\end{DoxyParamCaption})}
+
+
+
+Вычисляет p-\/value для статистики хи-\/квадрат. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em chi2} & Значение статистики. \\
+\hline
+{\em df} & Число степеней свободы. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Приближённое p-\/value. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00310}{310}}
+
+\Hypertarget{lab3__psrandom_8cpp_aa2133f058001f137f2da18ba0ecc2fca}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!rotl32@{rotl32}}
+\index{rotl32@{rotl32}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{rotl32()}{rotl32()}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_aa2133f058001f137f2da18ba0ecc2fca} 
+uint32\+\_\+t rotl32 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{x}{, }\item[{unsigned}]{r}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Циклический сдвиг 32-\/битного числа влево. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em x} & Исходное значение. \\
+\hline
+{\em r} & Количество бит для сдвига. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Результат циклического сдвига. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00052}{52}}
+
+
+
+\label{lab3__psrandom_8cpp_doc-var-members}
+\Hypertarget{lab3__psrandom_8cpp_doc-var-members}
+\doxysubsection{Переменные}
+\Hypertarget{lab3__psrandom_8cpp_a49e0be6b18a90c58221f96ff8b3d537a}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!BIN\_SIZE@{BIN\_SIZE}}
+\index{BIN\_SIZE@{BIN\_SIZE}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{BIN\_SIZE}{BIN\_SIZE}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a49e0be6b18a90c58221f96ff8b3d537a} 
+const int BIN\+\_\+\+SIZE = \doxymbox{\hyperlink{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583}{RANGE\+\_\+\+SIZE}} /\+ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{K}}}
+
+
+
+Размер одного интервала для критерия хи-\/квадрат. 
+
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00040}{40}}
+
+\Hypertarget{lab3__psrandom_8cpp_a89671e289ebc456dda6af5289a9cc140}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!BIT\_COUNT@{BIT\_COUNT}}
+\index{BIT\_COUNT@{BIT\_COUNT}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{BIT\_COUNT}{BIT\_COUNT}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a89671e289ebc456dda6af5289a9cc140} 
+const int BIT\+\_\+\+COUNT = 1000000}
+
+
+
+Количество битов для NIST-\/подобных тестов. 
+
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00046}{46}}
+
+\Hypertarget{lab3__psrandom_8cpp_acc1333a53debfec1f6a112d257439cf4}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!CHI2\_CRIT@{CHI2\_CRIT}}
+\index{CHI2\_CRIT@{CHI2\_CRIT}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{CHI2\_CRIT}{CHI2\_CRIT}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_acc1333a53debfec1f6a112d257439cf4} 
+const double CHI2\+\_\+\+CRIT = 30.\+1435}
+
+
+
+Критическое значение критерия хи-\/квадрат при 19 степенях свободы и alpha = 0.\+05. 
+
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00043}{43}}
+
+\Hypertarget{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!K@{K}}
+\index{K@{K}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{K}{K}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd} 
+const int K = 20}
+
+
+
+Количество интервалов для критерия хи-\/квадрат. 
+
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00037}{37}}
+
+\Hypertarget{lab3__psrandom_8cpp_aba6cb037db93cd395e97699fab1e022e}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!NUM\_SAMPLES@{NUM\_SAMPLES}}
+\index{NUM\_SAMPLES@{NUM\_SAMPLES}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{NUM\_SAMPLES}{NUM\_SAMPLES}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_aba6cb037db93cd395e97699fab1e022e} 
+const int NUM\+\_\+\+SAMPLES = 20}
+
+
+
+Количество выборок для статистического анализа. 
+
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00028}{28}}
+
+\Hypertarget{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!RANGE\_SIZE@{RANGE\_SIZE}}
+\index{RANGE\_SIZE@{RANGE\_SIZE}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{RANGE\_SIZE}{RANGE\_SIZE}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583} 
+const int RANGE\+\_\+\+SIZE = 10000}
+
+
+
+Размер диапазона случайных чисел. 
+
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00034}{34}}
+
+\Hypertarget{lab3__psrandom_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a}\index{lab3\_psrandom.cpp@{lab3\_psrandom.cpp}!SAMPLE\_SIZE@{SAMPLE\_SIZE}}
+\index{SAMPLE\_SIZE@{SAMPLE\_SIZE}!lab3\_psrandom.cpp@{lab3\_psrandom.cpp}}
+\doxysubsubsection{\texorpdfstring{SAMPLE\_SIZE}{SAMPLE\_SIZE}}
+{\footnotesize\ttfamily \label{lab3__psrandom_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a} 
+const int SAMPLE\+\_\+\+SIZE = 1000}
+
+
+
+Размер одной выборки. 
+
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00031}{31}}
+

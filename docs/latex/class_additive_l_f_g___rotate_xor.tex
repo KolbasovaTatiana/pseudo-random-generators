@@ -1,0 +1,114 @@
+\doxysection{Класс Additive\+LFG\+\_\+\+Rotate\+Xor}
+\hypertarget{class_additive_l_f_g___rotate_xor}{}\label{class_additive_l_f_g___rotate_xor}\index{AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}}
+
+
+Аддитивный лаговый рекуррентный генератор с вращением и XOR.  
+
+
+\doxysubsubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_af972d50f78bf6c52f93ca4afd85f0140}{Additive\+LFG\+\_\+\+Rotate\+Xor}} (uint32\+\_\+t seed=123456789U)
+\begin{DoxyCompactList}\small\item\em Конструктор генератора. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_a8af977a58910a78f8e1a0c0d05c26a12}{seed}} (uint32\+\_\+t seed\+Value)
+\begin{DoxyCompactList}\small\item\em Переинициализация генератора. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_a57ecc25435579009aa4df237a48e60e2}{next32}} ()
+\begin{DoxyCompactList}\small\item\em Генерация 32-\/битного значения из буфера. \end{DoxyCompactList}\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_accad9c4465bf17afb11341285d437808}{next}} ()
+\begin{DoxyCompactList}\small\item\em Генерация 32-\/битного значения. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Аддитивный лаговый рекуррентный генератор с вращением и XOR. 
+
+Генератор использует кольцевой буфер, аддитивную схему с двумя лагами, циклические сдвиги и XOR-\/перемешивание. 
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00176}{176}}
+
+
+
+\label{class_additive_l_f_g___rotate_xor_doc-constructors}
+\Hypertarget{class_additive_l_f_g___rotate_xor_doc-constructors}
+\doxysubsection{Конструктор(ы)}
+\Hypertarget{class_additive_l_f_g___rotate_xor_af972d50f78bf6c52f93ca4afd85f0140}\index{AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}!AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}}
+\index{AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}!AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}}
+\doxysubsubsection{\texorpdfstring{AdditiveLFG\_RotateXor()}{AdditiveLFG\_RotateXor()}}
+{\footnotesize\ttfamily \label{class_additive_l_f_g___rotate_xor_af972d50f78bf6c52f93ca4afd85f0140} 
+Additive\+LFG\+\_\+\+Rotate\+Xor::\+\+Additive\+LFG\+\_\+\+Rotate\+Xor (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{seed}{ = {\ttfamily 123456789U}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Конструктор генератора. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em seed} & Начальное зерно. \\
+\hline
+\end{DoxyParams}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00209}{209}}
+
+
+
+\label{class_additive_l_f_g___rotate_xor_doc-func-members}
+\Hypertarget{class_additive_l_f_g___rotate_xor_doc-func-members}
+\doxysubsection{Методы}
+\Hypertarget{class_additive_l_f_g___rotate_xor_accad9c4465bf17afb11341285d437808}\index{AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}!next@{next}}
+\index{next@{next}!AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily \label{class_additive_l_f_g___rotate_xor_accad9c4465bf17afb11341285d437808} 
+uint32\+\_\+t Additive\+LFG\+\_\+\+Rotate\+Xor::\+next (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Генерация 32-\/битного значения. 
+
+\begin{DoxyReturn}{Возвращает}
+Следующее 32-\/битное значение. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00234}{234}}
+
+\Hypertarget{class_additive_l_f_g___rotate_xor_a57ecc25435579009aa4df237a48e60e2}\index{AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}!next32@{next32}}
+\index{next32@{next32}!AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}}
+\doxysubsubsection{\texorpdfstring{next32()}{next32()}}
+{\footnotesize\ttfamily \label{class_additive_l_f_g___rotate_xor_a57ecc25435579009aa4df237a48e60e2} 
+uint32\+\_\+t Additive\+LFG\+\_\+\+Rotate\+Xor::\+next32 (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Генерация 32-\/битного значения из буфера. 
+
+\begin{DoxyReturn}{Возвращает}
+Следующее 32-\/битное значение. 
+\end{DoxyReturn}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00227}{227}}
+
+\Hypertarget{class_additive_l_f_g___rotate_xor_a8af977a58910a78f8e1a0c0d05c26a12}\index{AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}!seed@{seed}}
+\index{seed@{seed}!AdditiveLFG\_RotateXor@{AdditiveLFG\_RotateXor}}
+\doxysubsubsection{\texorpdfstring{seed()}{seed()}}
+{\footnotesize\ttfamily \label{class_additive_l_f_g___rotate_xor_a8af977a58910a78f8e1a0c0d05c26a12} 
+void Additive\+LFG\+\_\+\+Rotate\+Xor::\+seed (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{seed\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Переинициализация генератора. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em seed\+Value} & Новое зерно. \\
+\hline
+\end{DoxyParams}
+
+
+См. определение в файле \doxymbox{\hyperlink{lab3__psrandom_8cpp_source}{lab3\+\_\+psrandom.\+cpp}} строка \doxymbox{\hyperlink{lab3__psrandom_8cpp_source_l00215}{215}}
+
+
+
+Объявления и описания членов класса находятся в файле:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{lab3__psrandom_8cpp}{lab3\+\_\+psrandom.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Лабораторная работа №3. Генераторы псевдослучайных чисел: Лабораторная работа №3. Исследование генераторов псевдослучайных чисел</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Лабораторная работа №3. Генераторы псевдослучайных чисел
+   </div>
+   <div id="projectbrief">Статистический и скоростной анализ пользовательских ГПСЧ</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Лабораторная работа №3. Исследование генераторов псевдослучайных чисел </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+Цель работы</h1>
+<p>Исследовать качество и скорость работы нескольких генераторов псевдослучайных чисел, сравнить их статистические характеристики и оценить пригодность для практического использования.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Постановка задачи</h1>
+<p>В работе реализованы и исследованы следующие генераторы псевдослучайных чисел:</p>
+<ul>
+<li><span class="tt"><a class="el" href="class_l_c_g___bays_durham.html" title="Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-Durham.">LCG_BaysDurham</a></span> — линейный конгруэнтный генератор с перемешиванием Bays-Durham.</li>
+<li><span class="tt"><a class="el" href="class_xorshift128___m_l_t.html" title="Генератор xorshift128 с дополнительным перемешиванием.">Xorshift128_MLT</a></span> — генератор на основе схемы xorshift128 с дополнительным смешиванием.</li>
+<li><span class="tt"><a class="el" href="class_additive_l_f_g___rotate_xor.html" title="Аддитивный лаговый рекуррентный генератор с вращением и XOR.">AdditiveLFG_RotateXor</a></span> — аддитивный лаговый рекуррентный генератор с циклическими сдвигами и XOR.</li>
+</ul>
+<p>Для каждого генератора требуется:</p>
+<ol type="1">
+<li>Сформировать 20 выборок по 1000 чисел в диапазоне от 0 до 9999.</li>
+<li>Вычислить описательные статистики: среднее значение, стандартное отклонение, коэффициент вариации и статистику хи-квадрат.</li>
+<li>Проверить выборки на равномерность распределения по критерию хи-квадрат.</li>
+<li>Выполнить набор NIST-подобных тестов для битовых последовательностей.</li>
+<li>Измерить скорость генерации различного количества случайных чисел.</li>
+<li>Сохранить результаты в CSV-файлы для построения графиков и включения в документацию.</li>
+</ol>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Теоретические сведения</h1>
+<p>Псевдослучайные числа формируются детерминированными алгоритмами, которые по начальному зерну порождают последовательность, внешне похожую на случайную. Качество генератора оценивается по статистическим свойствам последовательности и по отсутствию заметных закономерностей в распределении значений и битов.</p>
+<p>Для анализа в работе используются следующие характеристики:</p>
+<ul>
+<li>Среднее значение выборки.</li>
+<li>Стандартное отклонение.</li>
+<li>Коэффициент вариации.</li>
+<li>Статистика критерия хи-квадрат.</li>
+<li>p-value для NIST-подобных тестов.</li>
+</ul>
+<p>Если значение статистики хи-квадрат не превышает критического уровня, гипотеза о равномерности распределения не отвергается. Для NIST-подобных тестов чем выше p-value, тем меньше оснований считать последовательность неслучайной.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Описание реализованных генераторов</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+LCG_BaysDurham</h2>
+<p>Генератор основан на линейном конгруэнтном методе. Для уменьшения корреляции между соседними значениями используется таблица перемешивания Bays-Durham из 32 элементов. После выбора значения из таблицы результат дополнительно проходит через этап смешивания битов.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Xorshift128_MLT</h2>
+<p>Генератор использует схему <span class="tt">xorshift128</span>, основанную на последовательности операций XOR и сдвигов. После получения очередного значения выполняется дополнительное нелинейное смешивание, что улучшает статистические свойства выходной последовательности.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+AdditiveLFG_RotateXor</h2>
+<p>Данный генератор использует аддитивную лаговую рекуррентную схему с кольцевым буфером. Для повышения качества последовательности в вычислениях применяются циклические сдвиги, XOR и дополнительная функция перемешивания.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+StandardMT</h2>
+<p>Для сравнения скорости работы дополнительно используется стандартный генератор <span class="tt">std::mt19937_64</span>, представляющий собой реализацию алгоритма Mersenne Twister.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+Описание статистических тестов</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Описательные статистики</h2>
+<p>Для каждой выборки вычисляются:</p>
+<ul>
+<li>среднее значение;</li>
+<li>стандартное отклонение;</li>
+<li>коэффициент вариации;</li>
+<li>статистика хи-квадрат;</li>
+<li>результат проверки на равномерность.</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+NIST-подобные тесты</h2>
+<p>В работе реализованы следующие тесты для битовой последовательности длиной 1000000 бит:</p>
+<ul>
+<li>Монобитный тест.</li>
+<li>Тест частоты в блоках.</li>
+<li>Тест серий.</li>
+<li>Тест на длину наибольшей серии единиц.</li>
+<li>Тест кумулятивных сумм в прямом направлении.</li>
+<li>Тест кумулятивных сумм в обратном направлении.</li>
+</ul>
+<p>Эти тесты позволяют оценить баланс нулей и единиц, распределение единиц внутри блоков, структуру серий и наличие накопленных отклонений в последовательности.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+Описание программы</h1>
+<p>Программа состоит из следующих основных частей:</p>
+<ul>
+<li>реализации трёх пользовательских генераторов;</li>
+<li>функций генерации выборок случайных чисел;</li>
+<li>функций вычисления описательных статистик;</li>
+<li>функций реализации NIST-подобных тестов;</li>
+<li>модуля измерения скорости генерации;</li>
+<li>блока сохранения результатов в файлы:<ul>
+<li><span class="tt">output/random_stats.csv</span>;</li>
+<li><span class="tt">output/nist_results.csv</span>;</li>
+<li><span class="tt">output/speed_results.csv</span>.</li>
+</ul>
+</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
+Результаты экспериментов</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
+Описательные статистики</h2>
+<p>В файл <span class="tt">random_stats.csv</span> сохраняются результаты для 20 выборок каждого генератора. По этим данным можно построить графики изменения:</p>
+<ul>
+<li>среднего значения;</li>
+<li>стандартного отклонения;</li>
+<li>коэффициента вариации;</li>
+<li>статистики хи-квадрат.</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+Графики описательных статистик</h2>
+<p><img src="plots/mean_by_sample.png" alt="Средние значения по выборкам" class="inline"/></p>
+<p><img src="plots/stddev_by_sample.png" alt="Стандартные отклонения по выборкам" class="inline"/></p>
+<p><img src="plots/cv_by_sample.png" alt="Коэффициент вариации по выборкам" class="inline"/></p>
+<p><img src="plots/chi2_by_sample.png" alt="Статистика хи-квадрат по выборкам" class="inline"/></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+Результаты NIST-подобных тестов</h2>
+<p>Результаты тестов сохраняются в файл <span class="tt">nist_results.csv</span>. Для каждого генератора вычисляются p-value по всем реализованным тестам. Эти значения позволяют оценить случайность битовой последовательности и выявить возможные статистические отклонения.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+График NIST-подобных тестов</h2>
+<p><img src="plots/nist_pvalues.png" alt="Сравнение p-value NIST-подобных тестов" class="inline"/></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+Скорость генерации</h2>
+<p>Для измерения производительности программа вычисляет время генерации последовательностей длиной от 1000 до 1000000 значений. Результаты сохраняются в файл <span class="tt">speed_results.csv</span>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+График скорости генерации</h2>
+<p><img src=".../plots/speed_comparison.png" alt="Сравнение скорости генерации" class="inline"/></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+Анализ результатов</h1>
+<p>По графику средних значений видно, что у всех трёх генераторов среднее по 20 выборкам колеблется около середины диапазона, то есть около 5000, без выраженного систематического смещения в большую или меньшую сторону. Это говорит о том, что на уровне выборочных средних все генераторы в целом дают приемлемое распределение значений в пределах исследуемого диапазона.</p>
+<p>График стандартного отклонения показывает, что разброс значений у всех генераторов находится примерно на одном уровне, а колебания от выборки к выборке не выходят за разумные пределы. Коэффициент вариации также остаётся достаточно стабильным: у всех трёх генераторов он лежит примерно в интервале от 0.55 до 0.61, что указывает на близкую относительную изменчивость выборок.</p>
+<p>По критерию хи-квадрат большинство выборок проходят проверку на равномерность, поскольку значения статистики обычно находятся ниже критического уровня 30.1435. Однако у каждого генератора есть отдельные выборки, в которых наблюдаются отклонения: у <a class="el" href="class_l_c_g___bays_durham.html" title="Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-Durham.">LCG_BaysDurham</a> одна выборка имеет (\chi^2) =38.28, у <a class="el" href="class_xorshift128___m_l_t.html" title="Генератор xorshift128 с дополнительным перемешиванием.">Xorshift128_MLT</a> одна выборка достигает (\chi^2) =31.12 и ещё одна поднимается до 28.96, а у <a class="el" href="class_additive_l_f_g___rotate_xor.html" title="Аддитивный лаговый рекуррентный генератор с вращением и XOR.">AdditiveLFG_RotateXor</a> одна выборка даёт (\chi^2) =30.56, то есть слегка превышает критический порог. В целом это означает, что все генераторы в основном демонстрируют равномерность, но полностью идеальным нельзя считать ни один из них.</p>
+<p>Результаты NIST-подобных тестов показывают, что <a class="el" href="class_l_c_g___bays_durham.html" title="Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-Durham.">LCG_BaysDurham</a> и <a class="el" href="class_xorshift128___m_l_t.html" title="Генератор xorshift128 с дополнительным перемешиванием.">Xorshift128_MLT</a> проходят все использованные проверки по порогу p-value = 0.01, поскольку их значения остаются выше этой границы во всех тестах. Наиболее уверенно выглядит <a class="el" href="class_xorshift128___m_l_t.html" title="Генератор xorshift128 с дополнительным перемешиванием.">Xorshift128_MLT</a>: у него особенно высокое p-value в тесте monobit (0.212764), тесте runs (0.729805) и на обратной кумулятивной сумме p-value остаётся комфортно выше порога. У <a class="el" href="class_l_c_g___bays_durham.html" title="Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-Durham.">LCG_BaysDurham</a> также хорошие результаты, причём особенно выделяется тест longest run с p-value 0.950109.</p>
+<p>Наиболее слабые результаты показывает <a class="el" href="class_additive_l_f_g___rotate_xor.html" title="Аддитивный лаговый рекуррентный генератор с вращением и XOR.">AdditiveLFG_RotateXor</a>: хотя тесты monobit, block frequency, runs и longest run он проходит, значения p-value для cusum_forward и cusum_backward равны 0.009880 и 0.007699 соответственно, то есть оказываются ниже контрольного порога 0.01. Это указывает на возможные накопленные отклонения в битовой последовательности и делает данный генератор менее устойчивым по сравнению с двумя остальными в рамках проведённых NIST-подобных проверок.</p>
+<p>По графику скорости генерации видно, что при росте размера выборки время работы всех генераторов увеличивается почти линейно. Самым быстрым на больших объёмах данных оказывается <a class="el" href="class_xorshift128___m_l_t.html" title="Генератор xorshift128 с дополнительным перемешиванием.">Xorshift128_MLT</a>: при размере 1000000 значений он показывает 4.331 мс, тогда как <a class="el" href="class_l_c_g___bays_durham.html" title="Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-Durham.">LCG_BaysDurham</a> требует 4.904 мс, <a class="el" href="class_standard_m_t.html" title="Обёртка над стандартным генератором Mersenne Twister.">StandardMT</a> — 6.493 мс, а <a class="el" href="class_additive_l_f_g___rotate_xor.html" title="Аддитивный лаговый рекуррентный генератор с вращением и XOR.">AdditiveLFG_RotateXor</a> — 6.214 мс. На промежуточных объёмах <a class="el" href="class_xorshift128___m_l_t.html" title="Генератор xorshift128 с дополнительным перемешиванием.">Xorshift128_MLT</a> также обычно остаётся среди лидеров, что делает его наиболее выгодным по соотношению качества и производительности.</p>
+<p>Таким образом, по совокупности результатов наиболее удачным генератором в данной работе можно считать <a class="el" href="class_xorshift128___m_l_t.html" title="Генератор xorshift128 с дополнительным перемешиванием.">Xorshift128_MLT</a>, поскольку он показывает хорошие статистические характеристики, проходит все NIST-подобные тесты и демонстрирует лучшую скорость генерации на больших выборках. <a class="el" href="class_l_c_g___bays_durham.html" title="Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-Durham.">LCG_BaysDurham</a> тоже даёт в целом качественные результаты, но уступает по скорости и имеет единичный заметный выброс по критерию хи-квадрат. <a class="el" href="class_additive_l_f_g___rotate_xor.html" title="Аддитивный лаговый рекуррентный генератор с вращением и XOR.">AdditiveLFG_RotateXor</a> показывает приемлемые описательные статистики, однако проигрывает по устойчивости в части NIST-подобных тестов и по производительности на больших объёмах генерации.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+Выводы</h1>
+<p>В ходе лабораторной работы были реализованы и исследованы три генератора псевдослучайных чисел: <span class="tt"><a class="el" href="class_l_c_g___bays_durham.html" title="Генератор на основе линейного конгруэнтного метода с перемешиванием Bays-Durham.">LCG_BaysDurham</a></span>, <span class="tt"><a class="el" href="class_xorshift128___m_l_t.html" title="Генератор xorshift128 с дополнительным перемешиванием.">Xorshift128_MLT</a></span> и <span class="tt"><a class="el" href="class_additive_l_f_g___rotate_xor.html" title="Аддитивный лаговый рекуррентный генератор с вращением и XOR.">AdditiveLFG_RotateXor</a></span>.</p>
+<p>В результате выполнения работы:</p>
+<ul>
+<li>получены выборки случайных чисел и вычислены их основные статистические характеристики;</li>
+<li>выполнена проверка равномерности по критерию хи-квадрат;</li>
+<li>проведены NIST-подобные тесты для битовых последовательностей;</li>
+<li>измерена скорость генерации и выполнено сравнение с <span class="tt">std::mt19937_64</span>.</li>
+</ul>
+<p>Проведённое исследование показывает, что для оценки генераторов необходимо учитывать одновременно два аспекта: статистическое качество последовательности и производительность алгоритма. Наиболее предпочтительным можно считать тот генератор, который показывает устойчивые статистические характеристики, успешно проходит тесты случайности и при этом имеет высокую скорость генерации.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+Репозиторий проекта</h1>
+<p>Исходный код лабораторной работы размещён в удалённом репозитории GitHub:</p>
+<p><a href="https://github.com/KolbasovaTatiana/pseudo-random-numbers">https://github.com/KolbasovaTatiana/pseudo-random-numbers</a> </p>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

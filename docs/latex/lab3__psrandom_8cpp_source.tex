@@ -1,0 +1,499 @@
+\doxysection{lab3\+\_\+psrandom.\+cpp}
+\hypertarget{lab3__psrandom_8cpp_source}{}\label{lab3__psrandom_8cpp_source}\doxymbox{\hyperlink{lab3__psrandom_8cpp}{См. документацию.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <cstdio>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00025}00025\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00028}\doxymbox{\hyperlink{lab3__psrandom_8cpp_aba6cb037db93cd395e97699fab1e022e}{00028}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_aba6cb037db93cd395e97699fab1e022e}{NUM\_SAMPLES}}\ =\ 20;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00031}\doxymbox{\hyperlink{lab3__psrandom_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a}{00031}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a}{SAMPLE\_SIZE}}\ =\ 1000;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00034}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583}{00034}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583}{RANGE\_SIZE}}\ =\ 10000;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00037}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{00037}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{K}}\ =\ 20;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00040}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a49e0be6b18a90c58221f96ff8b3d537a}{00040}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a49e0be6b18a90c58221f96ff8b3d537a}{BIN\_SIZE}}\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583}{RANGE\_SIZE}}\ /\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{K}};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00043}\doxymbox{\hyperlink{lab3__psrandom_8cpp_acc1333a53debfec1f6a112d257439cf4}{00043}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_acc1333a53debfec1f6a112d257439cf4}{CHI2\_CRIT}}\ =\ 30.1435;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00046}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a89671e289ebc456dda6af5289a9cc140}{00046}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a89671e289ebc456dda6af5289a9cc140}{BIT\_COUNT}}\ =\ 1000000;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00052}\doxymbox{\hyperlink{lab3__psrandom_8cpp_aa2133f058001f137f2da18ba0ecc2fca}{00052}}\ \textcolor{keyword}{inline}\ uint32\_t\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_aa2133f058001f137f2da18ba0ecc2fca}{rotl32}}(uint32\_t\ x,\ \textcolor{keywordtype}{unsigned}\ r)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ <<\ r)\ |\ (x\ >>\ (32\ -\/\ r));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00060}\doxymbox{\hyperlink{class_l_c_g___bays_durham}{00060}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_l_c_g___bays_durham_ae04020487f4122e75610d68dfb850de7}{LCG\_BaysDurham}}\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint64\_t\ A\ =\ 6364136223846793005ULL;\ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00062}00062\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint64\_t\ C\ =\ 1442695040888963407ULL;\ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ table\_size\ =\ 32;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00065}00065\ \ \ \ \ uint64\_t\ state;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00066}00066\ \ \ \ \ array<uint64\_t,\ table\_size>\ table\{\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00067}00067\ \ \ \ \ uint64\_t\ last;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00071}00071\ \ \ \ \ uint64\_t\ rawLCG()\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ state\ =\ A\ *\ state\ +\ C;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ state;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00074}00074\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00076}00076\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00079}\doxymbox{\hyperlink{class_l_c_g___bays_durham_ae04020487f4122e75610d68dfb850de7}{00079}}\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_l_c_g___bays_durham_ae04020487f4122e75610d68dfb850de7}{LCG\_BaysDurham}}(uint64\_t\ \doxymbox{\hyperlink{class_l_c_g___bays_durham_acbbc705b2b402267ba32880af675483d}{seed}}\ =\ 123456789ULL)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_l_c_g___bays_durham_acbbc705b2b402267ba32880af675483d}{seed}}\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ state\ =\ \doxymbox{\hyperlink{class_l_c_g___bays_durham_acbbc705b2b402267ba32880af675483d}{seed}};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ state\ =\ 123456789ULL;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ last\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ table\_size;\ ++i)\ table[i]\ =\ rawLCG();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ last\ =\ rawLCG();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00087}00087\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00091}\doxymbox{\hyperlink{class_l_c_g___bays_durham_acbbc705b2b402267ba32880af675483d}{00091}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_l_c_g___bays_durham_acbbc705b2b402267ba32880af675483d}{seed}}(uint64\_t\ seedValue)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ state\ =\ seedValue\ ?\ seedValue\ :\ 123456789ULL;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ table\_size;\ ++i)\ table[i]\ =\ rawLCG();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ last\ =\ rawLCG();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00095}00095\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00099}\doxymbox{\hyperlink{class_l_c_g___bays_durham_aa10c78c8ccaa7c0bbfd487d60bf681de}{00099}}\ \ \ \ \ uint64\_t\ \doxymbox{\hyperlink{class_l_c_g___bays_durham_aa10c78c8ccaa7c0bbfd487d60bf681de}{next64}}()\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ uint64\_t\ x\ =\ rawLCG();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ j\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}((last\ >>\ 59)\ \&\ (table\_size\ -\/\ 1));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ uint64\_t\ y\ =\ table[j];}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ table[j]\ =\ x;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ last\ =\ y;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ y\ \string^=\ (y\ >>\ 27);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ y\ *=\ 0x3C79AC492BA7B653ULL;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ y\ \string^=\ (y\ >>\ 33);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ y\ *=\ 0x1C69B3F74AC4AE35ULL;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ y\ \string^=\ (y\ >>\ 27);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ y;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00116}\doxymbox{\hyperlink{class_l_c_g___bays_durham_a6f9bcf64ba298d9f06bc8a55cb742d44}{00116}}\ \ \ \ \ uint32\_t\ \doxymbox{\hyperlink{class_l_c_g___bays_durham_a6f9bcf64ba298d9f06bc8a55cb742d44}{next}}()\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(\doxymbox{\hyperlink{class_l_c_g___bays_durham_aa10c78c8ccaa7c0bbfd487d60bf681de}{next64}}());}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00119}00119\ \};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00125}\doxymbox{\hyperlink{class_xorshift128___m_l_t}{00125}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_xorshift128___m_l_t_a4d06110ebae70e6f69bbeccbc42cedd8}{Xorshift128\_MLT}}\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00126}00126\ \ \ \ \ uint64\_t\ s[2];\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00128}00128\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00131}\doxymbox{\hyperlink{class_xorshift128___m_l_t_a4d06110ebae70e6f69bbeccbc42cedd8}{00131}}\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_xorshift128___m_l_t_a4d06110ebae70e6f69bbeccbc42cedd8}{Xorshift128\_MLT}}(uint64\_t\ \doxymbox{\hyperlink{class_xorshift128___m_l_t_a8ba6adcfadea313529ccce0d5d1e16fc}{seed}}\ =\ 123456789ULL)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_xorshift128___m_l_t_a8ba6adcfadea313529ccce0d5d1e16fc}{seed}}(\doxymbox{\hyperlink{class_xorshift128___m_l_t_a8ba6adcfadea313529ccce0d5d1e16fc}{seed}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00133}00133\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00137}\doxymbox{\hyperlink{class_xorshift128___m_l_t_a8ba6adcfadea313529ccce0d5d1e16fc}{00137}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_xorshift128___m_l_t_a8ba6adcfadea313529ccce0d5d1e16fc}{seed}}(uint64\_t\ seedValue)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (seedValue\ ==\ 0)\ seedValue\ =\ 123456789ULL;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ s[0]\ =\ seedValue;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ s[1]\ =\ seedValue\ \string^\ 0x9e3779b97f4a7c15ULL;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 16;\ ++i)\ \doxymbox{\hyperlink{class_xorshift128___m_l_t_a76f83d87cc3abb4d2116db672e2dcdb5}{next64}}();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00142}00142\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00146}\doxymbox{\hyperlink{class_xorshift128___m_l_t_a76f83d87cc3abb4d2116db672e2dcdb5}{00146}}\ \ \ \ \ uint64\_t\ \doxymbox{\hyperlink{class_xorshift128___m_l_t_a76f83d87cc3abb4d2116db672e2dcdb5}{next64}}()\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ uint64\_t\ s1\ =\ s[0];}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ uint64\_t\ s0\ =\ s[1];}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ s[0]\ =\ s0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ s1\ \string^=\ s1\ <<\ 23;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ s1\ \string^=\ s1\ >>\ 17;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ s1\ \string^=\ s0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ s1\ \string^=\ s0\ >>\ 26;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ s[1]\ =\ s1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ uint64\_t\ result\ =\ s1\ +\ s0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ result\ \string^=\ (result\ >>\ 30);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ result\ *=\ 0xbf58476d1ce4e5b9ULL;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ result\ \string^=\ (result\ >>\ 27);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ result\ *=\ 0x94d049bb133111ebULL;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ result\ \string^=\ (result\ >>\ 31);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00163}00163\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00167}\doxymbox{\hyperlink{class_xorshift128___m_l_t_a33f8fb1de460afcd93117a0d05298d2b}{00167}}\ \ \ \ \ uint32\_t\ \doxymbox{\hyperlink{class_xorshift128___m_l_t_a33f8fb1de460afcd93117a0d05298d2b}{next}}()\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(\doxymbox{\hyperlink{class_xorshift128___m_l_t_a76f83d87cc3abb4d2116db672e2dcdb5}{next64}}());}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00169}00169\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00170}00170\ \};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00176}\doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor}{00176}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_af972d50f78bf6c52f93ca4afd85f0140}{AdditiveLFG\_RotateXor}}\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00177}00177\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ LAG\_A\ =\ 55;\ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00178}00178\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ LAG\_B\ =\ 24;\ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00180}00180\ \ \ \ \ array<uint32\_t,\ LAG\_A>\ buffer\{\};\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00181}00181\ \ \ \ \ \textcolor{keywordtype}{int}\ index;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00186}00186\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ scramble(uint32\_t\ x)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ x\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_aa2133f058001f137f2da18ba0ecc2fca}{rotl32}}(x,\ 7)\ \string^\ (x\ >>\ 3);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ x\ +=\ 0x9e3779b9U;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ x\ \string^=\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_aa2133f058001f137f2da18ba0ecc2fca}{rotl32}}(x,\ 11);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ x\ \string^=\ (x\ >>\ 16);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00192}00192\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00195}00195\ \ \ \ \ \textcolor{keywordtype}{void}\ refill()\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ LAG\_A;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ j\ =\ (i\ +\ LAG\_B)\ \%\ LAG\_A;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ v\ =\ buffer[i]\ +\ buffer[j];}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ v\ \string^=\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_aa2133f058001f137f2da18ba0ecc2fca}{rotl32}}(buffer[j],\ 9);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ scramble(v);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ buffer[i]\ =\ v;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ index\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00204}00204\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00206}00206\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00209}\doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_af972d50f78bf6c52f93ca4afd85f0140}{00209}}\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_af972d50f78bf6c52f93ca4afd85f0140}{AdditiveLFG\_RotateXor}}(uint32\_t\ \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_a8af977a58910a78f8e1a0c0d05c26a12}{seed}}\ =\ 123456789U)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ this-\/>\doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_a8af977a58910a78f8e1a0c0d05c26a12}{seed}}(\doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_a8af977a58910a78f8e1a0c0d05c26a12}{seed}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00211}00211\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00215}\doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_a8af977a58910a78f8e1a0c0d05c26a12}{00215}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_a8af977a58910a78f8e1a0c0d05c26a12}{seed}}(uint32\_t\ seedValue)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ uint32\_t\ x\ =\ seedValue\ ?\ seedValue\ :\ 123456789U;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ LAG\_A;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 1664525U\ *\ x\ +\ 1013904223U;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ buffer[i]\ =\ scramble(x\ +\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(i\ *\ 2654435761U));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ index\ =\ LAG\_A;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ 8;\ ++k)\ refill();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00223}00223\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00227}\doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_a57ecc25435579009aa4df237a48e60e2}{00227}}\ \ \ \ \ uint32\_t\ \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_a57ecc25435579009aa4df237a48e60e2}{next32}}()\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ LAG\_A)\ refill();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ buffer[index++];}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00230}00230\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00234}\doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_accad9c4465bf17afb11341285d437808}{00234}}\ \ \ \ \ uint32\_t\ \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_accad9c4465bf17afb11341285d437808}{next}}()\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor_a57ecc25435579009aa4df237a48e60e2}{next32}}();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00236}00236\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00237}00237\ \};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00240}\doxymbox{\hyperlink{struct_sample_stats}{00240}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_sample_stats}{SampleStats}}\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00241}\doxymbox{\hyperlink{struct_sample_stats_a9039820794284e51f5256bdaa1f64505}{00241}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{struct_sample_stats_a9039820794284e51f5256bdaa1f64505}{mean}};\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00242}\doxymbox{\hyperlink{struct_sample_stats_af502e1421b470e1774b609f56dac70cc}{00242}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{struct_sample_stats_af502e1421b470e1774b609f56dac70cc}{stddev}};\ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00243}\doxymbox{\hyperlink{struct_sample_stats_ab5441a9adf7dd8a51a81f98dd526fb41}{00243}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{struct_sample_stats_ab5441a9adf7dd8a51a81f98dd526fb41}{cv}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00244}\doxymbox{\hyperlink{struct_sample_stats_ac0229013d1c4bc067e6bdade127ffac2}{00244}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{struct_sample_stats_ac0229013d1c4bc067e6bdade127ffac2}{chi2}};\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00245}\doxymbox{\hyperlink{struct_sample_stats_a72d53d6adc8af12de221f2b73524fd2b}{00245}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_sample_stats_a72d53d6adc8af12de221f2b73524fd2b}{uniform}};\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00246}00246\ \};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00251}\doxymbox{\hyperlink{lab3__psrandom_8cpp_ad655fe4347424d2ea2a6fe9bd6c4ae0c}{00251}}\ \doxymbox{\hyperlink{struct_sample_stats}{SampleStats}}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ad655fe4347424d2ea2a6fe9bd6c4ae0c}{computeStats}}(\textcolor{keyword}{const}\ vector<int>\&\ sample)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00252}00252\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(sample.size());}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00253}00253\ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00254}00254\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ :\ sample)\ sum\ +=\ x;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00255}00255\ \ \ \ \ \textcolor{keywordtype}{double}\ mean\ =\ sum\ /\ n;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00257}00257\ \ \ \ \ \textcolor{keywordtype}{double}\ sq\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00258}00258\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ :\ sample)\ sq\ +=\ (x\ -\/\ mean)\ *\ (x\ -\/\ mean);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00259}00259\ \ \ \ \ \textcolor{keywordtype}{double}\ stddev\ =\ sqrt(sq\ /\ (n\ -\/\ 1));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00260}00260\ \ \ \ \ \textcolor{keywordtype}{double}\ cv\ =\ (mean\ !=\ 0.0)\ ?\ (stddev\ /\ mean)\ :\ 0.0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00262}00262\ \ \ \ \ \textcolor{keywordtype}{int}\ bins[\doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{K}}]\ =\ \{\ 0\ \};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00263}00263\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ :\ sample)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bin\ =\ x\ /\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a49e0be6b18a90c58221f96ff8b3d537a}{BIN\_SIZE}};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bin\ >=\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{K}})\ bin\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{K}}\ -\/\ 1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ ++bins[bin];}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00267}00267\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00269}00269\ \ \ \ \ \textcolor{keywordtype}{double}\ expected\ =\ double(n)\ /\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{K}};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00270}00270\ \ \ \ \ \textcolor{keywordtype}{double}\ chi2\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00271}00271\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a7b63ccc35ac484b9f41e37ccd0cb31bd}{K}};\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ diff\ =\ bins[i]\ -\/\ expected;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ chi2\ +=\ (diff\ *\ diff)\ /\ expected;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00274}00274\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00276}00276\ \ \ \ \ \textcolor{keywordtype}{bool}\ uniform\ =\ (chi2\ <=\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_acc1333a53debfec1f6a112d257439cf4}{CHI2\_CRIT}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00277}00277\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\ mean,\ stddev,\ cv,\ chi2,\ uniform\ \};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00278}00278\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00286}00286\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Gen>}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00287}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a66d117a8d4ff064015568b237b324c07}{00287}}\ vector<int>\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a66d117a8d4ff064015568b237b324c07}{generateSample}}(Gen\&\ gen,\ \textcolor{keywordtype}{int}\ size,\ \textcolor{keywordtype}{int}\ range)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00288}00288\ \ \ \ \ vector<int>\ sample;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00289}00289\ \ \ \ \ sample.reserve(size);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00290}00290\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ size;\ ++i)}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00291}00291\ \ \ \ \ \ \ \ \ sample.push\_back(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(gen.next()\ \%\ range));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00292}00292\ \ \ \ \ \textcolor{keywordflow}{return}\ sample;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00293}00293\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00298}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a0c3df977c8031692f0d249977766f1b7}{00298}}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a0c3df977c8031692f0d249977766f1b7}{my\_erfc}}(\textcolor{keywordtype}{double}\ x)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00299}00299\ \ \ \ \ \textcolor{keywordtype}{double}\ t\ =\ 1.0\ /\ (1.0\ +\ 0.5\ *\ fabs(x));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00300}00300\ \ \ \ \ \textcolor{keywordtype}{double}\ tau\ =\ t\ *\ exp(-\/x\ *\ x\ -\/\ 1.26551223\ +\ t\ *\ (1.00002368\ +\ t\ *\ (0.37409196\ +}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00301}00301\ \ \ \ \ \ \ \ \ t\ *\ (0.09678418\ +\ t\ *\ (-\/0.18628806\ +\ t\ *\ (0.27886807\ +\ t\ *\ (-\/1.13520398\ +}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ t\ *\ (1.48851587\ +\ t\ *\ (-\/0.82215223\ +\ t\ *\ 0.17087277)))))))));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00303}00303\ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ >=\ 0)\ ?\ tau\ :\ 2.0\ -\/\ tau;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00304}00304\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00310}\doxymbox{\hyperlink{lab3__psrandom_8cpp_ab55cbd12576c03f2b2e21c377e8069e9}{00310}}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ab55cbd12576c03f2b2e21c377e8069e9}{p\_value\_from\_chi2}}(\textcolor{keywordtype}{double}\ chi2,\ \textcolor{keywordtype}{int}\ df)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00311}00311\ \ \ \ \ \textcolor{keywordtype}{double}\ z\ =\ (sqrt(2.0\ *\ chi2)\ -\/\ sqrt(2.0\ *\ df\ -\/\ 1.0));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00312}00312\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a0c3df977c8031692f0d249977766f1b7}{my\_erfc}}(fabs(z)\ /\ sqrt(2.0));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00313}00313\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00318}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a49098e3887a1310c0476f7a7fad2a94c}{00318}}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a49098e3887a1310c0476f7a7fad2a94c}{nist\_monobit}}(\textcolor{keyword}{const}\ vector<uint8\_t>\&\ bits)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00319}00319\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(bits.size());}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00320}00320\ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ <\ 100)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00321}00321\ \ \ \ \ \textcolor{keywordtype}{int}\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00322}00322\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ b\ :\ bits)\ sum\ +=\ b\ ?\ 1\ :\ -\/1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00323}00323\ \ \ \ \ \textcolor{keywordtype}{double}\ s\ =\ sum\ /\ sqrt(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(n));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00324}00324\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a0c3df977c8031692f0d249977766f1b7}{my\_erfc}}(fabs(s)\ /\ sqrt(2.0));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00325}00325\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00331}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a6e1649e5522803277804470ab3fe1888}{00331}}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a6e1649e5522803277804470ab3fe1888}{nist\_block\_frequency}}(\textcolor{keyword}{const}\ vector<uint8\_t>\&\ bits,\ \textcolor{keywordtype}{int}\ M\ =\ 128)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00332}00332\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(bits.size());}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00333}00333\ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ <\ M)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00334}00334\ \ \ \ \ \textcolor{keywordtype}{int}\ N\ =\ n\ /\ M;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00335}00335\ \ \ \ \ \textcolor{keywordtype}{double}\ chi2\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00336}00336\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ N;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00337}00337\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ones\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ M;\ ++j)}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bits[i\ *\ M\ +\ j])\ ++ones;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00340}00340\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pi\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(ones)\ /\ M;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00341}00341\ \ \ \ \ \ \ \ \ chi2\ +=\ (pi\ -\/\ 0.5)\ *\ (pi\ -\/\ 0.5);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00342}00342\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00343}00343\ \ \ \ \ chi2\ *=\ 4.0\ *\ M;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00344}00344\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ab55cbd12576c03f2b2e21c377e8069e9}{p\_value\_from\_chi2}}(chi2,\ N);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00345}00345\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00346}00346\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00350}\doxymbox{\hyperlink{lab3__psrandom_8cpp_af94f7069d60a35e07f6a500fc789f16d}{00350}}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_af94f7069d60a35e07f6a500fc789f16d}{nist\_runs}}(\textcolor{keyword}{const}\ vector<uint8\_t>\&\ bits)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00351}00351\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(bits.size());}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00352}00352\ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ <\ 100)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00353}00353\ \ \ \ \ \textcolor{keywordtype}{int}\ ones\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00354}00354\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ b\ :\ bits)\ ones\ +=\ b;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00355}00355\ \ \ \ \ \textcolor{keywordtype}{double}\ pi\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(ones)\ /\ n;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00356}00356\ \ \ \ \ \textcolor{keywordflow}{if}\ (fabs(pi\ -\/\ 0.5)\ >=\ 2.0\ /\ sqrt(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(n)))\ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00357}00357\ \ \ \ \ \textcolor{keywordtype}{int}\ runs\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00358}00358\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ n;\ ++i)}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00359}00359\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bits[i]\ !=\ bits[i\ -\/\ 1])\ ++runs;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00360}00360\ \ \ \ \ \textcolor{keywordtype}{double}\ num\ =\ runs\ -\/\ 2.0\ *\ n\ *\ pi\ *\ (1.0\ -\/\ pi);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00361}00361\ \ \ \ \ \textcolor{keywordtype}{double}\ den\ =\ 2.0\ *\ sqrt(2.0\ *\ n)\ *\ pi\ *\ (1.0\ -\/\ pi);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00362}00362\ \ \ \ \ \textcolor{keywordtype}{double}\ z\ =\ num\ /\ den;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00363}00363\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a0c3df977c8031692f0d249977766f1b7}{my\_erfc}}(fabs(z)\ /\ sqrt(2.0));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00364}00364\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00365}00365\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00369}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a1d881f4dfd5a20497b1a1c264f1ec2ea}{00369}}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a1d881f4dfd5a20497b1a1c264f1ec2ea}{nist\_longest\_run}}(\textcolor{keyword}{const}\ vector<uint8\_t>\&\ bits)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00370}00370\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(bits.size());}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00371}00371\ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ <\ 128)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00372}00372\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00373}00373\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ M\ =\ 10000;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00374}00374\ \ \ \ \ \textcolor{keywordtype}{int}\ N\ =\ n\ /\ M;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00375}00375\ \ \ \ \ \textcolor{keywordflow}{if}\ (N\ ==\ 0)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00376}00376\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ CAT\ =\ 7;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00377}00377\ \ \ \ \ vector<int>\ v(CAT,\ 0);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00379}00379\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ N;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00380}00380\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ longest\ =\ 0,\ current\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00381}00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ M;\ ++j)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bits[i\ *\ M\ +\ j])\ ++current;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\ >\ longest)\ longest\ =\ current;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00387}00387\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00388}00388\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\ >\ longest)\ longest\ =\ current;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00390}00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (longest\ <=\ 10)\ v[0]++;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00391}00391\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (longest\ ==\ 11)\ v[1]++;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00392}00392\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (longest\ ==\ 12)\ v[2]++;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00393}00393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (longest\ ==\ 13)\ v[3]++;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00394}00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (longest\ ==\ 14)\ v[4]++;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00395}00395\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (longest\ ==\ 15)\ v[5]++;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00396}00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ v[6]++;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00397}00397\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00398}00398\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00399}00399\ \ \ \ \ \textcolor{keywordtype}{double}\ pi[CAT]\ =\ \{\ 0.0882,\ 0.2092,\ 0.2483,\ 0.1933,\ 0.1208,\ 0.0675,\ 0.0727\ \};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00400}00400\ \ \ \ \ \textcolor{keywordtype}{double}\ chi2\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00401}00401\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ CAT;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00402}00402\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ expected\ =\ N\ *\ pi[i];}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00403}00403\ \ \ \ \ \ \ \ \ chi2\ +=\ (v[i]\ -\/\ expected)\ *\ (v[i]\ -\/\ expected)\ /\ expected;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00404}00404\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00405}00405\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ab55cbd12576c03f2b2e21c377e8069e9}{p\_value\_from\_chi2}}(chi2,\ CAT\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00406}00406\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00407}00407\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00412}\doxymbox{\hyperlink{lab3__psrandom_8cpp_ac08978b2e016601d96f948e7da57052d}{00412}}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ac08978b2e016601d96f948e7da57052d}{nist\_cusum}}(\textcolor{keyword}{const}\ vector<uint8\_t>\&\ bits,\ \textcolor{keywordtype}{bool}\ forward\ =\ \textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00413}00413\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(bits.size());}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00414}00414\ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ <\ 100)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00415}00415\ \ \ \ \ vector<int>\ X(n,\ 0);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00416}00416\ \ \ \ \ \textcolor{keywordtype}{int}\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00417}00417\ \ \ \ \ \textcolor{keywordflow}{if}\ (forward)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00418}00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ bits[i]\ ?\ 1\ :\ -\/1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ X[i]\ =\ sum;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00421}00421\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00422}00422\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00423}00423\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00424}00424\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ n\ -\/\ 1;\ i\ >=\ 0;\ -\/-\/i)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ bits[i]\ ?\ 1\ :\ -\/1;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ X[n\ -\/\ 1\ -\/\ i]\ =\ sum;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00427}00427\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00428}00428\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00429}00429\ \ \ \ \ \textcolor{keywordtype}{int}\ maxZ\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00430}00430\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ z\ :\ X)\ \textcolor{keywordflow}{if}\ (abs(z)\ >\ maxZ)\ maxZ\ =\ abs(z);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00431}00431\ \ \ \ \ \textcolor{keywordtype}{double}\ z\_stat\ =\ maxZ\ /\ sqrt(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(n));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00432}00432\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a0c3df977c8031692f0d249977766f1b7}{my\_erfc}}(z\_stat\ /\ sqrt(2.0));}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00433}00433\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00434}00434\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00437}\doxymbox{\hyperlink{class_standard_m_t}{00437}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_standard_m_t_a3b1fe640a7ff2a50644153329d53be20}{StandardMT}}\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00438}00438\ \ \ \ \ mt19937\_64\ gen;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00439}00439\ \ \ \ \ uniform\_int\_distribution<uint32\_t>\ dist;\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00440}00440\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00443}\doxymbox{\hyperlink{class_standard_m_t_a3b1fe640a7ff2a50644153329d53be20}{00443}}\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_standard_m_t_a3b1fe640a7ff2a50644153329d53be20}{StandardMT}}(uint64\_t\ \doxymbox{\hyperlink{class_standard_m_t_a3949909a8a292828a3ac31ff29deed0c}{seed}}\ =\ 12345)}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00444}00444\ \ \ \ \ \ \ \ \ :\ gen(\doxymbox{\hyperlink{class_standard_m_t_a3949909a8a292828a3ac31ff29deed0c}{seed}}),\ dist(0,\ numeric\_limits<uint32\_t>::max())\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00445}00445\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00446}00446\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00449}\doxymbox{\hyperlink{class_standard_m_t_a3949909a8a292828a3ac31ff29deed0c}{00449}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_standard_m_t_a3949909a8a292828a3ac31ff29deed0c}{seed}}(uint64\_t\ seedValue)\ \{\ gen.seed(seedValue);\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00450}00450\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00453}\doxymbox{\hyperlink{class_standard_m_t_ac687a7cff65222df0efa44364c9ea8a8}{00453}}\ \ \ \ \ uint32\_t\ \doxymbox{\hyperlink{class_standard_m_t_ac687a7cff65222df0efa44364c9ea8a8}{next}}()\ \{\ \textcolor{keywordflow}{return}\ dist(gen);\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00454}00454\ \};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00455}00455\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00461}00461\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Gen>}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00462}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a2099e95222d3fe18d0bd85d5c6402bf5}{00462}}\ vector<uint8\_t>\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a2099e95222d3fe18d0bd85d5c6402bf5}{generateBits}}(Gen\&\ gen,\ \textcolor{keywordtype}{int}\ numBits)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00463}00463\ \ \ \ \ vector<uint8\_t>\ bits;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00464}00464\ \ \ \ \ bits.reserve(numBits);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00465}00465\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numBits;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00466}00466\ \ \ \ \ \ \ \ \ uint32\_t\ r\ =\ gen.next();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00467}00467\ \ \ \ \ \ \ \ \ bits.push\_back((r\ >>\ 31)\ \&\ 1U);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00468}00468\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00469}00469\ \ \ \ \ \textcolor{keywordflow}{return}\ bits;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00470}00470\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00471}00471\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00477}00477\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Gen>}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00478}\doxymbox{\hyperlink{lab3__psrandom_8cpp_a814a07e427f0df0f3824f053d98f09cf}{00478}}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a814a07e427f0df0f3824f053d98f09cf}{measureGenerationTime}}(Gen\&\ gen,\ \textcolor{keywordtype}{int}\ count)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00479}00479\ \ \ \ \ \textcolor{keyword}{auto}\ t0\ =\ chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00480}00480\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00481}00481\ \ \ \ \ \ \ \ \ \textcolor{keyword}{volatile}\ uint32\_t\ sink\ =\ gen.next();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00482}00482\ \ \ \ \ \ \ \ \ (void)sink;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00483}00483\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00484}00484\ \ \ \ \ \textcolor{keyword}{auto}\ t1\ =\ chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00485}00485\ \ \ \ \ \textcolor{keywordflow}{return}\ chrono::duration<double,\ milli>(t1\ -\/\ t0).count();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00486}00486\ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00487}00487\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00495}\doxymbox{\hyperlink{lab3__psrandom_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{00495}}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00496}00496\ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ chrono::high\_resolution\_clock::now().time\_since\_epoch().count();}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00497}00497\ \ \ \ \ uint32\_t\ baseSeed\ =\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(now);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00498}00498\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00499}00499\ \ \ \ \ FILE*\ f\ =\ fopen(\textcolor{stringliteral}{"{}output/random\_stats.csv"{}},\ \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00500}00500\ \ \ \ \ fprintf(f,\ \textcolor{stringliteral}{"{}generator,sample,mean,stddev,cv,chi2,uniform\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00501}00501\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00502}00502\ \ \ \ \ printf(\textcolor{stringliteral}{"{}LCG\_BaysDurham\ results:\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00503}00503\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ s\ =\ 0;\ s\ <\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_aba6cb037db93cd395e97699fab1e022e}{NUM\_SAMPLES}};\ ++s)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00504}00504\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_l_c_g___bays_durham}{LCG\_BaysDurham}}\ gen(baseSeed\ +\ s\ *\ 1000);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00505}00505\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sample\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a66d117a8d4ff064015568b237b324c07}{generateSample}}(gen,\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a}{SAMPLE\_SIZE}},\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583}{RANGE\_SIZE}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00506}00506\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ stats\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ad655fe4347424d2ea2a6fe9bd6c4ae0c}{computeStats}}(sample);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00507}00507\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Sample\ \%2d:\ mean=\%7.1f\ \ stddev=\%7.1f\ \ cv=\%6.4f\ \ chi2=\%7.3f\ \ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ s\ +\ 1,\ stats.mean,\ stats.stddev,\ stats.cv,\ stats.chi2,}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ stats.uniform\ ?\ \textcolor{stringliteral}{"{}PASS"{}}\ :\ \textcolor{stringliteral}{"{}FAIL"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00510}00510\ \ \ \ \ \ \ \ \ fprintf(f,\ \textcolor{stringliteral}{"{}LCG\_BaysDurham,\%d,\%.1f,\%.1f,\%.4f,\%.3f,\%d\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ s\ +\ 1,\ stats.mean,\ stats.stddev,\ stats.cv,\ stats.chi2,\ stats.uniform);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00512}00512\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00513}00513\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00514}00514\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nXorshift128\_MLT\ results:\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00515}00515\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ s\ =\ 0;\ s\ <\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_aba6cb037db93cd395e97699fab1e022e}{NUM\_SAMPLES}};\ ++s)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00516}00516\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_xorshift128___m_l_t}{Xorshift128\_MLT}}\ gen(baseSeed\ +\ s\ *\ 2000);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00517}00517\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sample\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a66d117a8d4ff064015568b237b324c07}{generateSample}}(gen,\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a}{SAMPLE\_SIZE}},\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583}{RANGE\_SIZE}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00518}00518\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ stats\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ad655fe4347424d2ea2a6fe9bd6c4ae0c}{computeStats}}(sample);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00519}00519\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Sample\ \%2d:\ mean=\%7.1f\ \ stddev=\%7.1f\ \ cv=\%6.4f\ \ chi2=\%7.3f\ \ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ s\ +\ 1,\ stats.mean,\ stats.stddev,\ stats.cv,\ stats.chi2,}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ stats.uniform\ ?\ \textcolor{stringliteral}{"{}PASS"{}}\ :\ \textcolor{stringliteral}{"{}FAIL"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00522}00522\ \ \ \ \ \ \ \ \ fprintf(f,\ \textcolor{stringliteral}{"{}Xorshift128\_MLT,\%d,\%.1f,\%.1f,\%.4f,\%.3f,\%d\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ s\ +\ 1,\ stats.mean,\ stats.stddev,\ stats.cv,\ stats.chi2,\ stats.uniform);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00524}00524\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00525}00525\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00526}00526\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nAdditiveLFG\_RotateXor\ results:\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00527}00527\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ s\ =\ 0;\ s\ <\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_aba6cb037db93cd395e97699fab1e022e}{NUM\_SAMPLES}};\ ++s)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00528}00528\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor}{AdditiveLFG\_RotateXor}}\ gen(baseSeed\ +\ s\ *\ 3000);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00529}00529\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sample\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a66d117a8d4ff064015568b237b324c07}{generateSample}}(gen,\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a}{SAMPLE\_SIZE}},\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a5fefccc65be47d75576682015826c583}{RANGE\_SIZE}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00530}00530\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ stats\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ad655fe4347424d2ea2a6fe9bd6c4ae0c}{computeStats}}(sample);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00531}00531\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Sample\ \%2d:\ mean=\%7.1f\ \ stddev=\%7.1f\ \ cv=\%6.4f\ \ chi2=\%7.3f\ \ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \ \ s\ +\ 1,\ stats.mean,\ stats.stddev,\ stats.cv,\ stats.chi2,}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ stats.uniform\ ?\ \textcolor{stringliteral}{"{}PASS"{}}\ :\ \textcolor{stringliteral}{"{}FAIL"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00534}00534\ \ \ \ \ \ \ \ \ fprintf(f,\ \textcolor{stringliteral}{"{}AdditiveLFG\_RotateXor,\%d,\%.1f,\%.1f,\%.4f,\%.3f,\%d\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ s\ +\ 1,\ stats.mean,\ stats.stddev,\ stats.cv,\ stats.chi2,\ stats.uniform);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00536}00536\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00537}00537\ \ \ \ \ fclose(f);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00538}00538\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nDescriptive\ statistics\ saved\ to\ output/random\_stats.csv\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00539}00539\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00540}00540\ \ \ \ \ FILE*\ nist\_f\ =\ fopen(\textcolor{stringliteral}{"{}output/nist\_results.csv"{}},\ \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00541}00541\ \ \ \ \ fprintf(nist\_f,\ \textcolor{stringliteral}{"{}generator,monobit,block\_freq,runs,longest\_run,cusum\_forward,cusum\_backward\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00542}00542\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00543}00543\ \ \ \ \ vector<string>\ generators\ =\ \{\ \textcolor{stringliteral}{"{}LCG\_BaysDurham"{}},\ \textcolor{stringliteral}{"{}Xorshift128\_MLT"{}},\ \textcolor{stringliteral}{"{}AdditiveLFG\_RotateXor"{}}\ \};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00544}00544\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ g\ =\ 0;\ g\ <\ 3;\ ++g)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00545}00545\ \ \ \ \ \ \ \ \ vector<uint8\_t>\ bits;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00546}00546\ \ \ \ \ \ \ \ \ uint32\_t\ seed\ =\ baseSeed\ +\ g\ *\ 5000;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00547}00547\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (g\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_l_c_g___bays_durham}{LCG\_BaysDurham}}\ gen(seed);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ bits\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a2099e95222d3fe18d0bd85d5c6402bf5}{generateBits}}(gen,\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a89671e289ebc456dda6af5289a9cc140}{BIT\_COUNT}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00550}00550\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00551}00551\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (g\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_xorshift128___m_l_t}{Xorshift128\_MLT}}\ gen(seed);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ bits\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a2099e95222d3fe18d0bd85d5c6402bf5}{generateBits}}(gen,\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a89671e289ebc456dda6af5289a9cc140}{BIT\_COUNT}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00554}00554\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00555}00555\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor}{AdditiveLFG\_RotateXor}}\ gen(seed);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ bits\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a2099e95222d3fe18d0bd85d5c6402bf5}{generateBits}}(gen,\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a89671e289ebc456dda6af5289a9cc140}{BIT\_COUNT}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00558}00558\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00559}00559\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00560}00560\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ mono\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a49098e3887a1310c0476f7a7fad2a94c}{nist\_monobit}}(bits);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00561}00561\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ block\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a6e1649e5522803277804470ab3fe1888}{nist\_block\_frequency}}(bits,\ 128);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00562}00562\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ runs\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_af94f7069d60a35e07f6a500fc789f16d}{nist\_runs}}(bits);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00563}00563\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ longest\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a1d881f4dfd5a20497b1a1c264f1ec2ea}{nist\_longest\_run}}(bits);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00564}00564\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ cusum\_f\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ac08978b2e016601d96f948e7da57052d}{nist\_cusum}}(bits,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00565}00565\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ cusum\_b\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_ac08978b2e016601d96f948e7da57052d}{nist\_cusum}}(bits,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00566}00566\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00567}00567\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n\%s\ NIST-\/like\ results\ (p-\/values):\(\backslash\)n"{}},\ generators[g].c\_str());}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00568}00568\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Monobit:\ \ \ \ \ \ \ \ \ \%.6f\(\backslash\)n"{}},\ mono);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00569}00569\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Block\ Frequency:\ \%.6f\(\backslash\)n"{}},\ block);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00570}00570\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Runs:\ \ \ \ \ \ \ \ \ \ \ \ \%.6f\(\backslash\)n"{}},\ runs);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00571}00571\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Longest\ Run:\ \ \ \ \ \%.6f\(\backslash\)n"{}},\ longest);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00572}00572\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}CUSUM\ forward:\ \ \ \%.6f\(\backslash\)n"{}},\ cusum\_f);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00573}00573\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}CUSUM\ backward:\ \ \%.6f\(\backslash\)n"{}},\ cusum\_b);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00574}00574\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00575}00575\ \ \ \ \ \ \ \ \ fprintf(nist\_f,\ \textcolor{stringliteral}{"{}\%s,\%.6f,\%.6f,\%.6f,\%.6f,\%.6f,\%.6f\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ generators[g].c\_str(),\ mono,\ block,\ runs,\ longest,\ cusum\_f,\ cusum\_b);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00577}00577\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00578}00578\ \ \ \ \ fclose(nist\_f);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00579}00579\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nNIST-\/style\ results\ saved\ to\ output/nist\_results.csv\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00580}00580\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00581}00581\ \ \ \ \ \textcolor{keyword}{const}\ vector<int>\ SIZES\ =\ \{\ 1000,\ 2000,\ 5000,\ 10000,\ 20000,\ 50000,\ 100000,\ 200000,\ 500000,\ 1000000\ \};}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00582}00582\ \ \ \ \ FILE*\ speed\_f\ =\ fopen(\textcolor{stringliteral}{"{}output/speed\_results.csv"{}},\ \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00583}00583\ \ \ \ \ fprintf(speed\_f,\ \textcolor{stringliteral}{"{}size,LCG\_BaysDurham\_ms,Xorshift128\_MLT\_ms,AdditiveLFG\_RotateXor\_ms,StandardMT\_ms\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00584}00584\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00585}00585\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n\%10s\%18s\%18s\%24s\%16s\(\backslash\)n"{}},\ \textcolor{stringliteral}{"{}Size"{}},\ \textcolor{stringliteral}{"{}LCG\_BaysDurham"{}},\ \textcolor{stringliteral}{"{}Xorshift128\_MLT"{}},\ \textcolor{stringliteral}{"{}AdditiveLFG\_RotateXor"{}},\ \textcolor{stringliteral}{"{}StandardMT"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00586}00586\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ sz\ :\ SIZES)\ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00587}00587\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ tLCG,\ tXor,\ tLFG,\ tStd;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00588}00588\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_l_c_g___bays_durham}{LCG\_BaysDurham}}\ gen(baseSeed);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00590}00590\ \ \ \ \ \ \ \ \ \ \ \ \ tLCG\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a814a07e427f0df0f3824f053d98f09cf}{measureGenerationTime}}(gen,\ sz);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00591}00591\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00592}00592\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00593}00593\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_xorshift128___m_l_t}{Xorshift128\_MLT}}\ gen(baseSeed\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00594}00594\ \ \ \ \ \ \ \ \ \ \ \ \ tXor\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a814a07e427f0df0f3824f053d98f09cf}{measureGenerationTime}}(gen,\ sz);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00595}00595\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00596}00596\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00597}00597\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_additive_l_f_g___rotate_xor}{AdditiveLFG\_RotateXor}}\ gen(baseSeed\ +\ 2);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00598}00598\ \ \ \ \ \ \ \ \ \ \ \ \ tLFG\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a814a07e427f0df0f3824f053d98f09cf}{measureGenerationTime}}(gen,\ sz);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00599}00599\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00600}00600\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_standard_m_t}{StandardMT}}\ gen(baseSeed\ +\ 3);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00602}00602\ \ \ \ \ \ \ \ \ \ \ \ \ tStd\ =\ \doxymbox{\hyperlink{lab3__psrandom_8cpp_a814a07e427f0df0f3824f053d98f09cf}{measureGenerationTime}}(gen,\ sz);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00603}00603\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00604}00604\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00605}00605\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%10d\%18.3f\%18.3f\%24.3f\%16.3f\(\backslash\)n"{}},\ sz,\ tLCG,\ tXor,\ tLFG,\ tStd);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00606}00606\ \ \ \ \ \ \ \ \ fprintf(speed\_f,\ \textcolor{stringliteral}{"{}\%d,\%.3f,\%.3f,\%.3f,\%.3f\(\backslash\)n"{}},\ sz,\ tLCG,\ tXor,\ tLFG,\ tStd);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00607}00607\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00608}00608\ \ \ \ \ fclose(speed\_f);}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00609}00609\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nSpeed\ results\ saved\ to\ output/speed\_results.csv\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00610}00610\ }
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00611}00611\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{lab3__psrandom_8cpp_source_l00612}00612\ \}}
+
+\end{DoxyCode}
